@@ -7,6 +7,7 @@ export default class Form extends Component {
     render() {
         return(
             <View style={styles.container}>
+                {/* This code is the email box on the login page */}
                 <TextInput style={styles.inputBox}
                            underlineColorAndroid={"rgba(0,0,0,0)"}
                            placeholder={"Email"}
@@ -15,6 +16,7 @@ export default class Form extends Component {
                            keyboardType={"email-address"}
                            onSubmitEditing={() => this.password.focus()}
                 />
+                {/* This code is the password box on the login page */}
                 <TextInput style={styles.inputBox}
                            underlineColorAndroid={"rgba(0,0,0,0)"}
                            placeholder={"Password"}
@@ -35,7 +37,9 @@ const styles = StyleSheet.create({
     container : {
         flexGrow: 1,
         justifyContent:"center",
-        alignItems:"center"
+        alignItems:"center",
+        //backgroundColor:"#000000"
+
     },
     inputBox: {
         width:300,
@@ -44,11 +48,11 @@ const styles = StyleSheet.create({
         paddingHorizontal: 16,
         fontSize: 16,
         color: "#ffffff",
-        marginVertical: 10
+        marginVertical: 10,
     },
     button: {
         width:300,
-        backgroundColor:"#1c313a",
+        backgroundColor:"#FF3B3B",
         borderRadius: 25,
         paddingVertical: 12,
         fontSize: 16,

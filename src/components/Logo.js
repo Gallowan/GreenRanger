@@ -6,9 +6,9 @@ export default class Logo extends Component {
     render() {
         return(
             <View style={styles.container}>
-                <Image style={{width:80, height:70}}
-                       source={require("../images/download.png")}/>
-                <Text style={styles.logoText  }>Scout HQ</Text>
+                <Image style={{width:368, height:86}}
+                       source={require("../images/scout-logo-login.png")}/>
+                <Text style={styles.logoText}>{/*Scout HQ*/}</Text>
             </View>
         )
     }
@@ -16,10 +16,10 @@ export default class Logo extends Component {
 
 
 const styles = StyleSheet.create({
-    container : {
+    container: {
         flexGrow: 1,
         justifyContent:"flex-end",
-        alignItems:"center"
+        alignItems:"center",
     },
     logoText: {
         marginVertical: 15,

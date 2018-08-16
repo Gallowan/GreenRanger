@@ -11,43 +11,47 @@ export default class Login extends Component {
     }
     render() {
         return(
+            <ImageBackground: source={require("../images/background-image.png")}>
             <View style={styles.container}>
+                {/*<View style ={styles.backgroundImage}>*/}
                 <Logo/>
                 <Form type={"Login"}/>
-                <View style={styles.signupTextContainer}>
-                    <Text style={styles.signupText}>Don't have an account yet? </Text>
+                <View style={styles.signUpTextContainer}>
+                    <Text style={styles.signUpText}>Don't have an account yet? </Text>
                     <TouchableOpacity onPress={this.signup}>
-                        <Text style={styles.signupButton}>Sign Up!</Text>
+                        <Text style={styles.signUpButton}>Sign Up!</Text>
                     </TouchableOpacity>
                 </View>
             </View>
+            </ImageBackground:>
         )
     }
 }
 
 const styles = StyleSheet.create({
-    container : {
+    container: {
         backgroundColor: "#455a64",
         flex: 1,
         alignItems: "center",
         justifyContent: "center",
     },
-    signupTextContainer: {
+    signUpTextContainer: {
         flexGrow: 1,
         alignItems: "center",
         justifyContent: "center",
         marginVertical: 16,
         flexDirection: "row",
-
     },
-    signupButton: {
+    signUpButton: {
         color:"#ffffff",
         fontSize: 16,
         fontWeight: "500",
     },
-    signupText: {
+    signUpText: {
         color: "rgba(255,255,255,0.7)",
         fontSize: 16,
-
-    }
+    },
+    //backgroundImage: {
+     //ImageBackground: source{}
+    //}
 });
