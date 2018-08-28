@@ -11,7 +11,7 @@ export default class HomePage extends Component {
     render() {
         return(
             <View style={styles.container}>
-                <Text>Welcome Home Dude. Good to see you.</Text>
+                <Text>Welcome Home Heaux. We don't need you.</Text>
             </View>
         )
     }
@@ -20,6 +20,7 @@ export default class HomePage extends Component {
 const styles = StyleSheet.create({
     container: {
         //Ismail this is where you change the background color
+        // FUDGE OFF - Ismail
         backgroundColor: "#455a64",
         flex: 1,
         alignItems: "center",
