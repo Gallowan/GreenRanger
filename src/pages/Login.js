@@ -36,10 +36,11 @@ export default class Login extends Component {
                                placeholderTextColor={"#ffffff"}
                                ref={(input) => this.password = input}
                     />
+                    {/* This code is the login button on the login page */}
                     <TouchableOpacity style={styles.button} onPress={this.goHome}>
                         <Text style={styles.buttonText}>Login</Text>
                     </TouchableOpacity>
-                    <View style={styles.signupTextContainer}>
+                    <View style={styles.signUpTextContainer}>
                         <Text style={styles.signUpText}>Don't have an account yet? </Text>
                         <TouchableOpacity onPress={this.signup}>
                             <Text style={styles.signUpButton}>Sign Up!</Text>
@@ -52,6 +53,22 @@ export default class Login extends Component {
 }
 
 const styles = StyleSheet.create({
+    button: {
+        width:300,
+        backgroundColor:"#FF3B3B",
+        borderRadius: 25,
+        paddingVertical: 12,
+        //fontSize: 16,
+        //color: "#ffffff",
+        marginVertical: 10,
+        //alignItems: "flex-start",
+    },
+    buttonText: {
+        fontSize: 16,
+        fontWeight: "bold",
+        color: "#ffffff",
+        textAlign: "center"
+    },
     container: {
         //Ismail this is where you change the background color
         //backgroundColor: "#455a64",
@@ -68,7 +85,7 @@ const styles = StyleSheet.create({
         color: "#ffffff",
         marginVertical: 10,
     },
-    signupTextContainer: {
+    signUpTextContainer: {
         flexGrow: 1,
         alignItems: "flex-start",
         justifyContent: "flex-start",
@@ -83,21 +100,5 @@ const styles = StyleSheet.create({
     signUpText: {
         color: "rgba(255,255,255,0.7)",
         fontSize: 16,
-    },
-    button: {
-        width:300,
-        backgroundColor:"#FF3B3B",
-        borderRadius: 25,
-        paddingVertical: 12,
-        //fontSize: 16,
-        //color: "#ffffff",
-        marginVertical: 10,
-        alignItems: "flex-start",
-    },
-    buttonText: {
-        fontSize: 16,
-        fontWeight: "500",
-        color: "#ffffff",
-        textAlign: "center"
     }
 });
