@@ -74,7 +74,6 @@ const styles = StyleSheet.create({
         justifyContent: "flex-start",
         marginVertical: 16,
         flexDirection: "row",
-
     },
     loginButton: {
         color:"#ffffff",
@@ -101,6 +100,5 @@ const styles = StyleSheet.create({
         fontWeight: "500",
         color: "#ffffff",
         textAlign: "center"
-
     }
 });

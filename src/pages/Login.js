@@ -85,6 +85,10 @@ const styles = StyleSheet.create({
         color: "#ffffff",
         marginVertical: 10,
     },
+    signUpText: {
+        color: "rgba(255,255,255,0.7)",
+        fontSize: 16,
+    },
     signUpTextContainer: {
         flexGrow: 1,
         alignItems: "flex-start",
@@ -96,9 +100,5 @@ const styles = StyleSheet.create({
         color:"#ffffff",
         fontSize: 16,
         fontWeight: "500",
-    },
-    signUpText: {
-        color: "rgba(255,255,255,0.7)",
-        fontSize: 16,
     }
 });

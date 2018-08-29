@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
     container: {
         //Ismail this is where you change the background color
         // FUDGE OFF - Ismail
-        backgroundColor: "#455a64",
+        backgroundColor: "#ffffff",
         flex: 1,
         alignItems: "center",
         justifyContent: "center",
