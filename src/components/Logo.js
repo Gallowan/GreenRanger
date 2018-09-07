@@ -6,9 +6,8 @@ export default class Logo extends Component {
     render() {
         return(
             <View style={styles.container}>
-                <Image style={{width:368, height:86}}
-                       source={require("../images/scout-logo-login.png")}/>
-                <Text style={styles.logoText}>{/*Scout HQ*/}</Text>
+                <Image style={styles.logoSize}
+                       source={require("../images/LogoWhiteVector3.png")}/>
             </View>
         )
     }
@@ -25,5 +24,10 @@ const styles = StyleSheet.create({
         marginVertical: 15,
         fontSize:18,
         color: "rgba(255,255,255,0.7)",
+    },
+    logoSize: {
+        width:330,
+        height:86,
+        resizeMode: 'contain'
     }
 });
