@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, TextInput, ListView, View, Image, WebView, TouchableOpacity, Alert } from 'react-native';
-//import { SearchBar, Header } from 'react-native-elements';
+import { SearchBar, Header } from 'react-native-elements';
 
 // In future, set this equal to the default sport set on
 // the user's account. -JG
@@ -30,18 +30,23 @@ export default class App extends React.Component {
         return (
             // Consider installing React Native Elements?
             <View>
-                {/*<Header*/}
-                {/*leftComponent={{ icon: 'menu', color: '#fff' }}*/}
-                {/*centerComponent={{ text: this.state.title, style: { color: '#fff' } }}*/}
-                {/*rightComponent={{ icon: 'home', color: '#fff' }}*/}
-                {/*/>*/}
-                {/*<SearchBar*/}
-                {/*round*/}
-                {/*onChangeText={(text) => this.setState({text})}*/}
-                {/*onClearText={(text) => this.setState({text})}*/}
-                {/*onEndEditing={ () => this.onPressLearnMore(this.state.text) }*/}
-                {/*placeholder={"Type URL Here..."}*/}
-                {/*/>*/}
+                <Header
+                resizeMode="cover"
+                leftComponent={{ icon: 'menu', color: '#fff' }}
+                centerComponent={{ image: "../images/GlassesWhiteVectorTM.png"}}
+                rightComponent={{ icon: 'home', color: '#fff' }}
+                backgroundColor={'#ff3b3b'}
+                source={require('../images/GlassesWhiteVectorTM.png')}
+                />
+                <SearchBar
+                onChangeText={(text) => this.setState({text})}
+                onClearText={(text) => this.setState({text})}
+                onEndEditing={ () => this.onPressLearnMore(this.state.text) }
+                placeholder={"Search..."}
+                containerStyle={styles.header}
+                inputStyle={{backgroundColor: 'white'}}
+                lightTheme
+                />
                 <ListView
                     dataSource={this.state.dataSource}
                     renderRow={this.renderFeed}
@@ -135,4 +140,7 @@ const styles = StyleSheet.create({
         paddingTop: 20,
         backgroundColor: '#F5FCFF',
     },
+    header: {
+        backgroundColor: '#FFF'
+    }
 });
