@@ -5,6 +5,7 @@ import { SearchBar, Header } from 'react-native-elements';
 // In future, set this equal to the default sport set on
 // the user's account. -JG
 const REQUEST_XML_URL = 'http://www.espn.com/espn/rss/ncb/news';
+//const REQUEST_XML_URL = 'https://www.cbsnews.com/rss/';
 
 export default class App extends React.Component {
 
