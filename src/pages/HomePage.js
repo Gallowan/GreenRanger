@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, TextInput, ListView, View, Image, WebView, TouchableOpacity, Alert } from 'react-native';
 import { SearchBar, Header } from 'react-native-elements';
+import {Actions} from "react-native-router-flux/index";
 
 // In future, set this equal to the default sport set on
 // the user's account. -JG
@@ -8,6 +9,10 @@ const REQUEST_XML_URL = 'http://www.espn.com/espn/rss/ncb/news';
 //const REQUEST_XML_URL = 'https://www.cbsnews.com/rss/';
 
 export default class App extends React.Component {
+
+    toSelection() {
+        Actions.sportselection();
+    }
 
     // Constructor, involving the state of the RSSFeed
     // Checks for XML source, loading status
@@ -35,9 +40,8 @@ export default class App extends React.Component {
                 resizeMode="cover"
                 leftComponent={{ icon: 'menu', color: '#fff' }}
                 centerComponent={{ image: "../images/GlassesWhiteVectorTM.png"}}
-                rightComponent={{ icon: 'home', color: '#fff' }}
+                rightComponent={{ icon: 'home', color: '#fff', onPress: this.toSelection()}}
                 backgroundColor={'#ff3b3b'}
-                source={require('../images/GlassesWhiteVectorTM.png')}
                 />
                 <SearchBar
                 onChangeText={(text) => this.setState({text})}
