@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, TextInput, ListView, View, Image, WebView, TouchableOpacity, Alert } from 'react-native';
 import { SearchBar, Header } from 'react-native-elements';
-import {Actions} from "react-native-router-flux/index";
+//import {Actions} from 'react-native-router-flux';
 
 // In future, set this equal to the default sport set on
 // the user's account. -JG
@@ -10,8 +10,9 @@ const REQUEST_XML_URL = 'http://www.espn.com/espn/rss/ncb/news';
 
 export default class App extends React.Component {
 
+    // Uncommenting this will crash the app because sportsSelection doesn't exist yet
     toSelection() {
-        Actions.sportselection();
+        //Actions.sportselection();
     }
 
     // Constructor, involving the state of the RSSFeed
@@ -19,9 +20,7 @@ export default class App extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            dataSource: new ListView.DataSource({
-                rowHasChanged: (row1, row2) => row1 !== row2,
-            }),
+            dataSource: new ListView.DataSource({ rowHasChanged: (row1, row2) => row1 !== row2, }),
             loaded: false,
             text: REQUEST_XML_URL,
             title: "",
@@ -40,7 +39,7 @@ export default class App extends React.Component {
                 resizeMode="cover"
                 leftComponent={{ icon: 'menu', color: '#fff' }}
                 centerComponent={{ image: "../images/GlassesWhiteVectorTM.png"}}
-                rightComponent={{ icon: 'home', color: '#fff', onPress: this.toSelection()}}
+                rightComponent={{ icon: 'home', color: '#fff'}}
                 backgroundColor={'#ff3b3b'}
                 />
                 <SearchBar
