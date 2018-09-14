@@ -1,6 +1,6 @@
 import React from 'react';
-import { StyleSheet, Text, TextInput, ListView, View, Image, WebView, TouchableOpacity, Alert } from 'react-native';
-import { SearchBar, Header } from 'react-native-elements';
+import { StyleSheet, Text, TextInput, ListView, View, Image, TouchableOpacity, Alert } from 'react-native';
+import {SearchBar, Header, Button} from 'react-native-elements';
 //import {Actions} from 'react-native-router-flux';
 
 // In future, set this equal to the default sport set on
@@ -8,7 +8,7 @@ import { SearchBar, Header } from 'react-native-elements';
 const REQUEST_XML_URL = 'http://www.espn.com/espn/rss/ncb/news';
 //const REQUEST_XML_URL = 'https://www.cbsnews.com/rss/';
 
-export default class App extends React.Component {
+export default class HomePage extends React.Component {
 
     // Uncommenting this will crash the app because sportsSelection doesn't exist yet
     toSelection() {
@@ -33,13 +33,24 @@ export default class App extends React.Component {
         }
 
         return (
-            // Consider installing React Native Elements?
+            // The view with the placeholder text needs to be it's own navigation bar
+            // so that we can actually move between screens without using routes (deprecated?).
+            // Ideally it's just navigation buttons that take you from one screen to another.
+            // Idk if the onPress is working because the settings page doesn't have anything
+            // yet so that needs to be tested.
             <View>
+                <View style={{  alignItems: 'center', justifyContent: 'center' }}>
+                    <Text>PlaceHolder Text</Text>
+                    <Button
+                        title="Go to Settings"
+                        onPress={() => this.props.navigation.navigate('Settings')}
+                    />
+                </View>
                 <Header
                 resizeMode="cover"
-                leftComponent={{ icon: 'menu', color: '#fff' }}
+                leftComponent={{ icon: 'home', color: '#fff'}}
                 centerComponent={{ image: "../images/GlassesWhiteVectorTM.png"}}
-                rightComponent={{ icon: 'home', color: '#fff'}}
+                rightComponent={{ icon: 'menu', color: '#fff' }}
                 backgroundColor={'#ff3b3b'}
                 />
                 <SearchBar
