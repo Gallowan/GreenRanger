@@ -1,7 +1,9 @@
 import React from 'react';
 import { StyleSheet, Text, TextInput, ListView, View, Image, TouchableOpacity, Alert } from 'react-native';
-import {SearchBar, Header, Button} from 'react-native-elements';
-//import {Actions} from 'react-native-router-flux';
+import {SearchBar, Header, Button, Icon} from 'react-native-elements';
+import Glasses from "../components/Glasses";
+//import {createStackNavigator} from 'react-navigator';
+import {Actions} from 'react-native-router-flux';
 
 // In future, set this equal to the default sport set on
 // the user's account. -JG
@@ -11,8 +13,11 @@ const REQUEST_XML_URL = 'http://www.espn.com/espn/rss/ncb/news';
 export default class HomePage extends React.Component {
 
     // Uncommenting this will crash the app because sportsSelection doesn't exist yet
-    toSelection() {
-        //Actions.sportselection();
+    goSelection() {
+        Actions.sportselection();
+    }
+    goAccount(){
+        Actions.account();
     }
 
     // Constructor, involving the state of the RSSFeed
@@ -39,20 +44,27 @@ export default class HomePage extends React.Component {
             // Idk if the onPress is working because the settings page doesn't have anything
             // yet so that needs to be tested.
             <View>
-                <View style={{  alignItems: 'center', justifyContent: 'center' }}>
-                    <Text>PlaceHolder Text</Text>
-                    <Button
-                        title="Go to Settings"
-                        onPress={() => this.props.navigation.navigate('Settings')}
-                    />
-                </View>
+                {/*<View style={{  alignItems: 'center', justifyContent: 'center' }}>*/}
+                    {/*<Text>PlaceHolder Text</Text>*/}
+                    {/*<Button*/}
+                        {/*title="Go to Settings"*/}
+                        {/*onPress={() => this.props.navigation.navigate('Settings')}*/}
+                    {/*/>*/}
+                {/*</View>*/}
                 <Header
                 resizeMode="cover"
-                leftComponent={{ icon: 'home', color: '#fff'}}
-                centerComponent={{ image: "../images/GlassesWhiteVectorTM.png"}}
-                rightComponent={{ icon: 'menu', color: '#fff' }}
+                    // leftComponent={
+                    //     <Button
+                    //         title="Go to Settings"
+                    //         onPress={() => this.props.navigation.navigate('Settings')}
+                    //     />
+                    // }
+                leftComponent={{ icon: 'account-circle', color: '#fff', onPress: () => this.goAccount()}}
+                centerComponent={<Glasses/>}
+                rightComponent={{ icon: 'menu', color: '#fff', onPress: () => this.goSelection()}}
                 backgroundColor={'#ff3b3b'}
                 />
+
                 <SearchBar
                 onChangeText={(text) => this.setState({text})}
                 onClearText={(text) => this.setState({text})}
