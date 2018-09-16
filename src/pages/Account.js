@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {
     StyleSheet, Text, View, StatusBar, ListView, Image, Platform, NativeModules, ScrollView, RefreshControl,
-    TouchableOpacity, ImageBackground
+    TouchableOpacity, ImageBackground, SafeAreaView, WebView
 } from 'react-native';
 import {Header, Card, Avatar, Button, Icon} from 'react-native-elements';
 import Glasses from "../components/Glasses";
@@ -28,9 +28,11 @@ export default class Account extends Component {
     //     this.onRefresh()
     // }
 
+    // User image under background on Android. See styles.
     render() {
         return (
-            <View style={styles.headerContainer}>
+            <ScrollView style={styles.headerContainer}>
+                <SafeAreaView/>
                 <ImageBackground
                     style={styles.headerBackgroundImage}
                     blurRadius={1}
@@ -88,9 +90,17 @@ export default class Account extends Component {
                         </View>
                     </View>
                 </View>
-            </View>
+                <View style={{height: 250}}>
+                    <WebView
+                        style={styles.HighlightsContainer}
+                        scrollEnabled={false}
+                        javaScriptEnabled={true}
+                        domStorageEnabled={true}
+                        source={{uri: 'https://www.youtube.com/embed/ht6klNfH2pg'}}
+                    />
+                </View>
+            </ScrollView>
         )
-
     }
 }
 
@@ -101,6 +111,10 @@ const styles = StyleSheet.create({
         flex: 1,
         margin: 0,
         padding: 0,
+    },
+    safeArea: {
+        flex: 1,
+        backgroundColor: '#ff3b3b'
     },
     container: {
         flex: 1,
@@ -159,6 +173,8 @@ const styles = StyleSheet.create({
         textShadowOffset:{width: 1, height: 1},
         textShadowRadius:1,
     },
+    // User image behind background on Android. zIndez and position: absolute
+    // not working.
     userImage: {
         marginTop: -90,
         borderColor: '#FFF',
@@ -178,4 +194,7 @@ const styles = StyleSheet.create({
         textShadowOffset:{width: 1, height: 1},
         textShadowRadius:1,
     },
+    HighlightsContainer: {
+        marginTop: (Platform.OS = 'ios') ? 20 : 0,
+    }
 });

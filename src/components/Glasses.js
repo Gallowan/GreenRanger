@@ -26,8 +26,8 @@ const styles = StyleSheet.create({
         color: "rgba(255,255,255,0.7)",
     },
     logoSize: {
-        width:165,
-        height:43,
+        width:148,
+        height:37,
         resizeMode: 'contain'
     }
 });

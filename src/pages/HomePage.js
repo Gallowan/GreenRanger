@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, TextInput, ListView, View, Image, TouchableOpacity, Alert } from 'react-native';
+import { StyleSheet, Text, TextInput, ListView, View, Image, TouchableOpacity, Alert, SafeAreaView} from 'react-native';
 import {SearchBar, Header, Button, Icon} from 'react-native-elements';
 import Glasses from "../components/Glasses";
 //import {createStackNavigator} from 'react-navigator';
@@ -51,6 +51,8 @@ export default class HomePage extends React.Component {
                         {/*onPress={() => this.props.navigation.navigate('Settings')}*/}
                     {/*/>*/}
                 {/*</View>*/}
+                <SafeAreaView style={styles.safeArea}>
+                </SafeAreaView>
                 <Header
                 resizeMode="cover"
                     // leftComponent={
@@ -144,6 +146,10 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         alignItems: 'center',
         justifyContent: 'center',
+    },
+    safeArea: {
+        marginTop: -25,
+        backgroundColor: '#ff3b3b'
     },
     thumbnail: {
         width: 100,
