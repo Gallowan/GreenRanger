@@ -195,6 +195,6 @@ const styles = StyleSheet.create({
         textShadowRadius:1,
     },
     HighlightsContainer: {
-        marginTop: (Platform.OS = 'ios') ? 20 : 0,
+        // marginTop: (Platform.OS = 'ios') ? 20 : 0,
     }
 });
