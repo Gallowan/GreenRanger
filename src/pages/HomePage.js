@@ -19,6 +19,9 @@ export default class HomePage extends React.Component {
     goAccount(){
         Actions.account();
     }
+    goProfile(){
+        Actions.profile();
+    }
 
     // Constructor, involving the state of the RSSFeed
     // Checks for XML source, loading status
@@ -61,21 +64,23 @@ export default class HomePage extends React.Component {
                     //         onPress={() => this.props.navigation.navigate('Settings')}
                     //     />
                     // }
-                leftComponent={{ icon: 'account-circle', color: '#fff', onPress: () => this.goAccount()}}
-                centerComponent={<Glasses/>}
-                rightComponent={{ icon: 'menu', color: '#fff', onPress: () => this.goSelection()}}
+                leftComponent={{ icon: 'account-circle', color: '#fff', size: 35, onPress: () => this.goAccount(), underlayColor:'#ff3b3b'}}
+                centerComponent={
+                    <SearchBar
+                        onChangeText={(text) => this.setState({text})}
+                        onClearText={(text) => this.setState({text})}
+                        // onEndEditing={ () => this.onPressLearnMore(this.state.text) }
+                        placeholder={"Search"}
+                        placeholderTextColor={'white'}
+                        icon = {{type: 'MaterialCommunityIcons', color: '#FFF', name: 'search'}}
+                        containerStyle={styles.header}
+                        inputStyle={{backgroundColor: '#ff3b3b', color: 'white'}}
+                    />
+                }
+                rightComponent={{ icon: 'menu', color: '#fff', size: 30, onPress: () => this.goSelection(), underlayColor:'#ff3b3b'}}
                 backgroundColor={'#ff3b3b'}
                 />
 
-                <SearchBar
-                onChangeText={(text) => this.setState({text})}
-                onClearText={(text) => this.setState({text})}
-                onEndEditing={ () => this.onPressLearnMore(this.state.text) }
-                placeholder={"Search..."}
-                containerStyle={styles.header}
-                inputStyle={{backgroundColor: 'white'}}
-                lightTheme
-                />
                 <ListView
                     dataSource={this.state.dataSource}
                     renderRow={this.renderFeed}
@@ -174,6 +179,9 @@ const styles = StyleSheet.create({
         backgroundColor: '#F5FCFF',
     },
     header: {
-        backgroundColor: '#FFF'
-    }
+        width: '100%',
+        backgroundColor: '#FF3b3b',
+        borderBottomColor:'transparent',
+        borderTopColor:'transparent'
+    },
 });

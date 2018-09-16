@@ -10,8 +10,9 @@
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
-      "image": "./assets/scout-logo.png",
+      "image": "./assets/scout-logo-min.png",
       //"resizeMode": "contain",
+
       "backgroundColor": "#000000"
     },
     "updates": {

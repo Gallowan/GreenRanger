@@ -1,135 +1,81 @@
-import React, {Component} from 'react';
-import {
-    StyleSheet, Text, View, StatusBar, ListView, Image, Platform, NativeModules, ScrollView, RefreshControl,
-    TouchableOpacity, ImageBackground, SafeAreaView, WebView
-} from 'react-native';
-import {Header, Card, Avatar, Button, Icon} from 'react-native-elements';
-import Glasses from "../components/Glasses";
+import React from 'react';
+import {Text, View, TouchableOpacity, SafeAreaView, StyleSheet, Image, Platform} from 'react-native';
+import {Icon} from "react-native-elements";
+import {Actions} from "react-native-router-flux";
 
-// For easy user implementation
-// const users = [
-//     {
-//         name: 'brynn',
-//         avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/brynn/128.jpg',
-//     };
+export default class Account extends React.Component {
 
-export default class Account extends Component {
-
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            refreshing: false,
-            profile_username: '',
-        };
+    goProfile() {
+        Actions.profile();
+    }
+    goSettings() {
+        Actions.settings();
     }
 
-    // componentDidMount() {
-    //     this.onRefresh()
-    // }
-
-    // User image under background on Android. See styles.
     render() {
-        return (
-            <ScrollView style={styles.headerContainer}>
-                <SafeAreaView/>
-                <ImageBackground
-                    style={styles.headerBackgroundImage}
-                    blurRadius={1}
-                    source={require('../images/test_usc.png')}
-                >
-                </ImageBackground>
-                <View style={styles.headerColumn}>
-                    <Image
-                        style={styles.userImage}
-                        source={require('../images/test_isaac.png')
-                        }
-                    />
-                    <Text style={styles.userNameText}>{'Isaac Taylor-Stuart'}</Text>
+        return(
+
+            <View style={styles.container}>
+                <Text style={styles.userNameText}>{'Isaac Taylor-Stuart'}</Text>
+                <View style={styles.userAddressRow}>
                     <View style={styles.userAddressRow}>
-                        <View>
-                            <Icon
-                                name="place"
-                                underlayColor="transparent"
-                                iconStyle={styles.placeIcon}
-                                // onPress={this.onPressPlace}
-                            />
-                        </View>
-                        <View style={styles.userCityRow}>
-                            <Text style={styles.userCityText}>
-                                {'Los Angeles'}, {'California'}
-                            </Text>
-                        </View>
-                    </View>
-                    <View style={styles.userAddressRow}>
-                        <View>
-                            <Icon
-                                name="school"
-                                underlayColor="transparent"
-                                iconStyle={styles.placeIcon}
-                            />
-                        </View>
                         <View style={styles.userCityRow}>
                             <Text style={styles.userCityText}>
                                 {'University of Southern California'}
                             </Text>
                         </View>
                     </View>
-                    <View style={styles.userAddressRow}>
-                        <View>
-                            <Icon
-                                name="format-align-left"
-                                underlayColor="transparent"
-                                iconStyle={styles.placeIcon}
-                            />
-                        </View>
-                        <View style={styles.userCityRow}>
-                            <Text style={styles.userCityText}>
-                                {'6-2'}, {'205 lbs'}
-                            </Text>
-                        </View>
-                    </View>
                 </View>
-                <View style={{height: 250}}>
-                    <WebView
-                        style={styles.HighlightsContainer}
-                        scrollEnabled={false}
-                        javaScriptEnabled={true}
-                        domStorageEnabled={true}
-                        source={{uri: 'https://www.youtube.com/embed/ht6klNfH2pg'}}
-                    />
-                </View>
-            </ScrollView>
+                <Image
+                    style={styles.userImage}
+                    source={require('../images/test_isaac.png')
+                    }
+                />
+                <TouchableOpacity style={styles.button} onPress={this.goProfile}>
+                    <Text style={styles.buttonText}>View Profile</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.button} onPress={this.goSettings}>
+                    <Text style={styles.buttonText}>Settings</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.button} onPress={this.goHome}>
+                    <Text style={styles.buttonText}>Help</Text>
+                </TouchableOpacity>
+                <Icon
+                    position="absolute"
+                    bottom={50}
+                    name="brightness-2"
+                    underlayColor="transparent"
+                    iconStyle={styles.placeIcon}
+                />
+            </View>
         )
     }
 }
 
 const styles = StyleSheet.create({
-    cardContainer: {
-        backgroundColor: '#FFF',
-        borderWidth: 0,
-        flex: 1,
-        margin: 0,
-        padding: 0,
+    button: {
+        width:300,
+        backgroundColor:"#FF3B3B",
+        borderRadius: 25,
+        paddingVertical: 12,
+        //fontSize: 16,
+        //color: "#ffffff",
+        marginVertical: 10,
+        //alignItems: "flex-start",
     },
-    safeArea: {
-        flex: 1,
-        backgroundColor: '#ff3b3b'
+    buttonText: {
+        fontSize: 16,
+        fontWeight: "bold",
+        color: "#ffffff",
+        textAlign: "center"
     },
     container: {
-        flex: 1,
+        //Ismail this is where you change the background color
+        //backgroundColor: "#455a64",
+        flexGrow: 1,
+        alignItems: "center",
+        justifyContent: "center",
     },
-    emailContainer: {
-        backgroundColor: '#FFF',
-        flex: 1,
-        paddingTop: 30,
-    },
-    headerBackgroundImage: {
-        paddingBottom: 20,
-        paddingTop: 200,
-        flex: 1
-    },
-    headerContainer: {},
     headerColumn: {
         backgroundColor: 'transparent',
         ...Platform.select({
@@ -143,50 +89,17 @@ const styles = StyleSheet.create({
             },
         }),
     },
-    placeIcon: {
-        color: 'black',
-        fontSize: 20,
-        paddingRight: 2
-    },
-    scroll: {
-        backgroundColor: '#FFF',
-    },
-    telContainer: {
-        backgroundColor: '#FFF',
-        flex: 1,
-        paddingTop: 30,
-    },
-    userAddressRow: {
-        alignItems: 'center',
-        flexDirection: 'row',
-    },
-    userCityRow: {
-        backgroundColor: 'transparent',
-    },
-    userCityText: {
-        color: '#FFF',
-        fontSize: 15,
-        fontWeight: '600',
-        textAlign: 'center',
-        paddingBottom:5,
-        textShadowColor:'#000',
-        textShadowOffset:{width: 1, height: 1},
-        textShadowRadius:1,
-    },
-    // User image behind background on Android. zIndez and position: absolute
-    // not working.
     userImage: {
-        marginTop: -90,
-        borderColor: '#FFF',
+        borderColor: '#FF3b3b',
         borderRadius: 85,
         borderWidth: 3,
         height: 170,
-        marginBottom: 15,
+        marginBottom: 20,
         width: 170,
     },
     userNameText: {
         color: '#FFF',
-        fontSize: 22,
+        fontSize: 28,
         fontWeight: 'bold',
         paddingBottom: 8,
         textAlign: 'center',
@@ -194,7 +107,22 @@ const styles = StyleSheet.create({
         textShadowOffset:{width: 1, height: 1},
         textShadowRadius:1,
     },
-    HighlightsContainer: {
-        marginTop: (Platform.OS = 'ios') ? 20 : 0,
-    }
+    userAddressRow: {
+        alignItems: 'center',
+        flexDirection: 'row',
+        paddingBottom: 14
+    },
+    userCityRow: {
+        backgroundColor: 'transparent',
+    },
+    userCityText: {
+        color: '#FFF',
+        fontSize: 20,
+        fontWeight: '600',
+        textAlign: 'center',
+        paddingBottom:5,
+        textShadowColor:'#000',
+        textShadowOffset:{width: 1, height: 1},
+        textShadowRadius:1,
+    },
 });

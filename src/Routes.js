@@ -7,6 +7,7 @@ import HomePage from "./pages/HomePage";
 import SportSelection from "./pages/SportSelection";
 import Account from "./pages/Account";
 import Settings from "./pages/Settings";
+import Profile from "./pages/Profile"
 
 export default class Routes extends Component {
     render() {
@@ -19,6 +20,7 @@ export default class Routes extends Component {
                     <Scene key="sportselection" component={SportSelection} title="SportSelection"/>
                     <Scene key="account" component={Account} title="Account"/>
                     <Scene key="settings" component={Settings} title="Settings"/>
+                    <Scene key="profile" component={Profile} title="Profile"/>
                 </Stack>
             </Router>
         )
