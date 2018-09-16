@@ -1,7 +1,181 @@
-import React from 'react';
-import { StyleSheet }from 'react-native';
+import React, {Component} from 'react';
+import {
+    StyleSheet, Text, View, StatusBar, ListView, Image, Platform, NativeModules, ScrollView, RefreshControl,
+    TouchableOpacity, ImageBackground
+} from 'react-native';
+import {Header, Card, Avatar, Button, Icon} from 'react-native-elements';
+import Glasses from "../components/Glasses";
 
-// Stylesheet for the Account page
+// For easy user implementation
+// const users = [
+//     {
+//         name: 'brynn',
+//         avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/brynn/128.jpg',
+//     };
+
+export default class Account extends Component {
+
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            refreshing: false,
+            profile_username: '',
+        };
+    }
+
+    // componentDidMount() {
+    //     this.onRefresh()
+    // }
+
+    render() {
+        return (
+            <View style={styles.headerContainer}>
+                <ImageBackground
+                    style={styles.headerBackgroundImage}
+                    blurRadius={1}
+                    source={require('../images/test_usc.png')}
+                >
+                </ImageBackground>
+                <View style={styles.headerColumn}>
+                    <Image
+                        style={styles.userImage}
+                        source={require('../images/test_isaac.png')
+                        }
+                    />
+                    <Text style={styles.userNameText}>{'Isaac Taylor-Stuart'}</Text>
+                    <View style={styles.userAddressRow}>
+                        <View>
+                            <Icon
+                                name="place"
+                                underlayColor="transparent"
+                                iconStyle={styles.placeIcon}
+                                // onPress={this.onPressPlace}
+                            />
+                        </View>
+                        <View style={styles.userCityRow}>
+                            <Text style={styles.userCityText}>
+                                {'Los Angeles'}, {'California'}
+                            </Text>
+                        </View>
+                    </View>
+                    <View style={styles.userAddressRow}>
+                        <View>
+                            <Icon
+                                name="school"
+                                underlayColor="transparent"
+                                iconStyle={styles.placeIcon}
+                            />
+                        </View>
+                        <View style={styles.userCityRow}>
+                            <Text style={styles.userCityText}>
+                                {'University of Southern California'}
+                            </Text>
+                        </View>
+                    </View>
+                    <View style={styles.userAddressRow}>
+                        <View>
+                            <Icon
+                                name="format-align-left"
+                                underlayColor="transparent"
+                                iconStyle={styles.placeIcon}
+                            />
+                        </View>
+                        <View style={styles.userCityRow}>
+                            <Text style={styles.userCityText}>
+                                {'6-2'}, {'205 lbs'}
+                            </Text>
+                        </View>
+                    </View>
+                </View>
+            </View>
+        )
+
+    }
+}
+
 const styles = StyleSheet.create({
-
+    cardContainer: {
+        backgroundColor: '#FFF',
+        borderWidth: 0,
+        flex: 1,
+        margin: 0,
+        padding: 0,
+    },
+    container: {
+        flex: 1,
+    },
+    emailContainer: {
+        backgroundColor: '#FFF',
+        flex: 1,
+        paddingTop: 30,
+    },
+    headerBackgroundImage: {
+        paddingBottom: 20,
+        paddingTop: 200,
+        flex: 1
+    },
+    headerContainer: {},
+    headerColumn: {
+        backgroundColor: 'transparent',
+        ...Platform.select({
+            ios: {
+                alignItems: 'center',
+                elevation: 1,
+                marginTop: -1,
+            },
+            android: {
+                alignItems: 'center',
+            },
+        }),
+    },
+    placeIcon: {
+        color: 'black',
+        fontSize: 20,
+        paddingRight: 2
+    },
+    scroll: {
+        backgroundColor: '#FFF',
+    },
+    telContainer: {
+        backgroundColor: '#FFF',
+        flex: 1,
+        paddingTop: 30,
+    },
+    userAddressRow: {
+        alignItems: 'center',
+        flexDirection: 'row',
+    },
+    userCityRow: {
+        backgroundColor: 'transparent',
+    },
+    userCityText: {
+        color: '#FFF',
+        fontSize: 15,
+        fontWeight: '600',
+        textAlign: 'center',
+        paddingBottom:5,
+        textShadowColor:'#000',
+        textShadowOffset:{width: 1, height: 1},
+        textShadowRadius:1,
+    },
+    userImage: {
+        marginTop: -90,
+        borderColor: '#FFF',
+        borderRadius: 85,
+        borderWidth: 3,
+        height: 170,
+        marginBottom: 15,
+        width: 170,
+    },
+    userNameText: {
+        color: '#FFF',
+        fontSize: 22,
+        fontWeight: 'bold',
+        paddingBottom: 8,
+        textAlign: 'center',
+        textShadowColor:'#000',
+        textShadowOffset:{width: 1, height: 1},
+        textShadowRadius:1,
+    },
 });
