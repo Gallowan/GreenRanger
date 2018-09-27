@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, SafeAreaView, View } from 'react-native';
 import {ButtonGroup} from 'react-native-elements';
 
 export default class HomePage extends React.Component {
@@ -21,12 +21,30 @@ export default class HomePage extends React.Component {
         const {selectedIndex} = this.state;
 
         return (
-            <ButtonGroup
-                onPress={this.updateIndex}
-                selectedIndex={selectedIndex}
-                buttons={buttons}
-                containerStyle={{height: 100}}
-            />
+            <View>
+                <SafeAreaView style={styles.safeArea}>
+                </SafeAreaView>
+                <ButtonGroup
+                    onPress={this.updateIndex}
+                    selectedIndex={selectedIndex}
+                    buttons={buttons}
+                    underlayColor={'#ff3b3b'}
+                    containerStyle={{ height: 30, alignSelf: 'stretch', backgroundColor: 'white'}}
+                />
+            </View>
         )
     }
 }
+
+const styles = StyleSheet.create({
+    container: {
+        paddingTop: 10,
+        flexDirection: 'row',
+        backgroundColor: '#fff',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    safeArea: {
+        backgroundColor: '#ff3b3b'
+    },
+});

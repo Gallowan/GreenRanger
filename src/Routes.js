@@ -8,6 +8,8 @@ import SportSelection from "./pages/SportSelection";
 import Account from "./pages/Account";
 import Settings from "./pages/Settings";
 import Profile from "./pages/Profile"
+import PlayerCard from "./pages/PlayerCard"
+import PlayerStats from "./pages/PlayerStats"
 
 export default class Routes extends Component {
     render() {
@@ -21,6 +23,8 @@ export default class Routes extends Component {
                     <Scene key="account" component={Account} title="Account"/>
                     <Scene key="settings" component={Settings} title="Settings"/>
                     <Scene key="profile" component={Profile} title="Profile"/>
+                    <Scene key="playercard" component={PlayerCard} title="PlayerCard"/>
+                    <Scene key="playerstats" component={PlayerStats} title="PlayerStats"/>
                 </Stack>
             </Router>
         )

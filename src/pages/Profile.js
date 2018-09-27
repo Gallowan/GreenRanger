@@ -4,7 +4,7 @@ import {
     TouchableOpacity, ImageBackground, SafeAreaView, WebView
 } from 'react-native';
 import {Header, Card, Avatar, Button, Icon} from 'react-native-elements';
-import Glasses from "../components/Glasses";
+import {Actions} from "react-native-router-flux";
 
 // For easy user implementation
 // const users = [
@@ -22,6 +22,13 @@ export default class Profile extends Component {
             refreshing: false,
             profile_username: '',
         };
+    }
+
+    goCard() {
+        Actions.playercard();
+    }
+    goStats() {
+        Actions.playerstats();
     }
 
     // componentDidMount() {
@@ -99,6 +106,14 @@ export default class Profile extends Component {
                         source={{uri: 'https://www.youtube.com/embed/ht6klNfH2pg'}}
                     />
                 </View>
+                <View style={styles.buttonContainer}>
+                    <TouchableOpacity style={styles.button} onPress={this.goCard}>
+                        <Text style={styles.buttonText}>Player Card</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.button} onPress={this.goStats}>
+                        <Text style={styles.buttonText}>Stats</Text>
+                    </TouchableOpacity>
+                </View>
             </ScrollView>
         )
     }
@@ -173,7 +188,7 @@ const styles = StyleSheet.create({
         textShadowOffset:{width: 1, height: 1},
         textShadowRadius:1,
     },
-    // User image behind background on Android. zIndez and position: absolute
+    // User image behind background on Android. zIndex and position: absolute
     // not working.
     userImage: {
         marginTop: -90,
@@ -195,6 +210,29 @@ const styles = StyleSheet.create({
         textShadowRadius:1,
     },
     HighlightsContainer: {
-        // marginTop: (Platform.OS = 'ios') ? 20 : 0,
-    }
+        marginTop: (Platform.OS = 'ios') ? 20 : 0,
+    },
+    buttonContainer: {
+      alignItems: 'center',
+      flexDirection: 'row',
+      justifyContent: 'center',
+    },
+    button: {
+        width:170,
+        backgroundColor:"#FF3B3B",
+        //borderRadius: 25,
+        paddingVertical: 10,
+        //fontSize: 16,
+        //color: "#ffffff",
+        marginVertical: 10,
+        marginLeft: 10,
+        marginRight: 1,
+        //alignItems: "flex-start",
+    },
+    buttonText: {
+        fontSize: 16,
+        fontWeight: "bold",
+        color: "#ffffff",
+        textAlign: "center"
+    },
 });

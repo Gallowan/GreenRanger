@@ -21,7 +21,21 @@ export default class SignUp extends Component {
                     <Logo/>
                     <TextInput style={styles.inputBox}
                                underlineColorAndroid={"rgba(0,0,0,0)"}
-                               placeholder={"Email"}
+                               placeholder={"What is your first name?"}
+                               placeholderTextColor={"#ffffff"}
+                               selectionColor={"#ffffff"}
+                               keyboardType={"email-address"}
+                    />
+                    <TextInput style={styles.inputBox}
+                               underlineColorAndroid={"rgba(0,0,0,0)"}
+                               placeholder={"Last name?"}
+                               placeholderTextColor={"#ffffff"}
+                               selectionColor={"#ffffff"}
+                               keyboardType={"email-address"}
+                    />
+                    <TextInput style={styles.inputBox}
+                               underlineColorAndroid={"rgba(0,0,0,0)"}
+                               placeholder={"Email?"}
                                placeholderTextColor={"#ffffff"}
                                selectionColor={"#ffffff"}
                                keyboardType={"email-address"}
@@ -30,7 +44,7 @@ export default class SignUp extends Component {
                     {/* This code is the password box on the login page */}
                     <TextInput style={styles.inputBox}
                                underlineColorAndroid={"rgba(0,0,0,0)"}
-                               placeholder={"Password"}
+                               placeholder={"Choose a password."}
                                secureTextEntry={true}
                                placeholderTextColor={"#ffffff"}
                                ref={(input) => this.password = input}
@@ -90,14 +104,14 @@ const styles = StyleSheet.create({
         backgroundColor:"#FF3B3B",
         borderRadius: 25,
         paddingVertical: 12,
-        fontSize: 16,
-        color: "#ffffff",
+        //fontSize: 16,
+        //color: "#ffffff",
         marginVertical: 10,
-        alignItems: "flex-start",
+        //alignItems: "flex-start",
     },
     buttonText: {
         fontSize: 16,
-        fontWeight: "500",
+        fontWeight: "Bold",
         color: "#ffffff",
         textAlign: "center"
     }

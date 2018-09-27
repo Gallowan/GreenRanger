@@ -4,6 +4,7 @@ import {SearchBar, Header, Button, Icon} from 'react-native-elements';
 import Glasses from "../components/Glasses";
 //import {createStackNavigator} from 'react-navigator';
 import {Actions} from 'react-native-router-flux';
+import Swiper from 'react-native-swiper';
 
 // In future, set this equal to the default sport set on
 // the user's account. -JG
@@ -54,6 +55,7 @@ export default class HomePage extends React.Component {
                         {/*onPress={() => this.props.navigation.navigate('Settings')}*/}
                     {/*/>*/}
                 {/*</View>*/}
+
                 <SafeAreaView style={styles.safeArea}>
                 </SafeAreaView>
                 <Header
