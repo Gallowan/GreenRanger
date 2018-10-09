@@ -5,6 +5,11 @@ import Glasses from "../components/Glasses";
 //import {createStackNavigator} from 'react-navigator';
 import {Actions} from 'react-native-router-flux';
 import Swiper from 'react-native-swiper';
+import Drawer from 'react-native-drawer';
+import SideMenu from 'react-native-side-menu';
+import Menu from './Menu';
+import Logo from "../components/Logo";
+const menuLogo = require("../images/menu_logo.png");
 
 // In future, set this equal to the default sport set on
 // the user's account. -JG
@@ -24,19 +29,47 @@ export default class HomePage extends React.Component {
         Actions.profile();
     }
 
+    closeControlPanel = () => {
+        this._drawer.close()
+    };
+    openControlPanel = () => {
+        this._drawer.open()
+    };
+
     // Constructor, involving the state of the RSSFeed
     // Checks for XML source, loading status
     constructor(props){
         super(props);
+        this.toggle = this.toggle.bind(this);
         this.state = {
             dataSource: new ListView.DataSource({ rowHasChanged: (row1, row2) => row1 !== row2, }),
             loaded: false,
             text: REQUEST_XML_URL,
             title: "",
+
+            isOpen: false,
+            selectedItem: 'About',
         };
     }
 
+    toggle() {
+        this.setState({
+            isOpen: !this.state.isOpen,
+        });
+    }
+    updateMenuState(isOpen) {
+        this.setState({ isOpen });
+    }
+
+    onMenuItemSelected = item =>
+        this.setState({
+            isOpen: false,
+            selectedItem: item,
+        });
+
     render() {
+        const menu = <Menu onItemSelected={this.onMenuItemSelected} />;
+
         if (!this.state.loaded) {
             return this.renderLoadingView();
         }
@@ -47,6 +80,12 @@ export default class HomePage extends React.Component {
             // Ideally it's just navigation buttons that take you from one screen to another.
             // Idk if the onPress is working because the settings page doesn't have anything
             // yet so that needs to be tested.
+            <SideMenu
+                menu={menu}
+                isOpen={this.state.isOpen}
+                onChange={isOpen => this.updateMenuState(isOpen)}
+                menuPosition={'right'}
+            >
             <View>
                 {/*<View style={{  alignItems: 'center', justifyContent: 'center' }}>*/}
                     {/*<Text>PlaceHolder Text</Text>*/}
@@ -68,27 +107,55 @@ export default class HomePage extends React.Component {
                     // }
                 leftComponent={{ icon: 'account-circle', color: '#fff', size: 35, onPress: () => this.goAccount(), underlayColor:'#ff3b3b'}}
                 centerComponent={
-                    <SearchBar
-                        onChangeText={(text) => this.setState({text})}
-                        onClearText={(text) => this.setState({text})}
-                        // onEndEditing={ () => this.onPressLearnMore(this.state.text) }
-                        placeholder={"Search"}
-                        placeholderTextColor={'white'}
-                        icon = {{type: 'MaterialCommunityIcons', color: '#FFF', name: 'search'}}
-                        containerStyle={styles.header}
-                        inputStyle={{backgroundColor: '#ff3b3b', color: 'white'}}
+                    <Image
+                        source={require("../images/GlassesWhiteVector.png")}
+                        style={styles.topLogo}
                     />
                 }
-                rightComponent={{ icon: 'menu', color: '#fff', size: 30, onPress: () => this.goSelection(), underlayColor:'#ff3b3b'}}
+                // Following search bar used to be in center component. Looks unnecessary.
+
+                rightComponent={{ icon: 'menu', color: '#fff', size: 35, onPress: () => this.toggle(), underlayColor:'#ff3b3b'}}
+
+                //rightComponent={{ icon: 'menu', color: '#fff', size: 30, onPress: () => this.goSelection(), underlayColor:'#ff3b3b'}}
                 backgroundColor={'#ff3b3b'}
                 />
-
                 <ListView
                     dataSource={this.state.dataSource}
                     renderRow={this.renderFeed}
                     style={styles.ListView}
                 />
+                {/*<SideMenu*/}
+                    {/*menu={menu}*/}
+                    {/*isOpen={this.state.isOpen}*/}
+                    {/*onChange={isOpen => this.updateMenuState(isOpen)}*/}
+                {/*>*/}
+                    {/*<View style={styles.container2}>*/}
+                        {/*<Text style={styles.welcome}>*/}
+                            {/*Welcome to React Native!*/}
+                        {/*</Text>*/}
+                        {/*<Text style={styles.instructions}>*/}
+                            {/*To get started, edit index.ios.js*/}
+                        {/*</Text>*/}
+                        {/*<Text style={styles.instructions}>*/}
+                            {/*Press Cmd+R to reload,{'\n'}*/}
+                            {/*Cmd+Control+Z for dev menu*/}
+                        {/*</Text>*/}
+                        {/*<Text style={styles.instructions}>*/}
+                            {/*Current selected menu item is: {this.state.selectedItem}*/}
+                        {/*</Text>*/}
+                    {/*</View>*/}
+                    {/*<TouchableOpacity*/}
+                        {/*onPress={this.toggle}*/}
+                        {/*style={styles.button}*/}
+                    {/*>*/}
+                        {/*<Image*/}
+                            {/*source={menuLogo}*/}
+                            {/*style={{ width: 32, height: 32 }}*/}
+                        {/*/>*/}
+                    {/*</TouchableOpacity>*/}
+                {/*</SideMenu>*/}
             </View>
+            </SideMenu>
         );
     }
 
@@ -154,6 +221,11 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
+    topLogo: {
+        width: 140,
+        height: 35,
+        marginTop: 25
+    },
     safeArea: {
         marginTop: -25,
         backgroundColor: '#ff3b3b'
@@ -185,5 +257,31 @@ const styles = StyleSheet.create({
         backgroundColor: '#FF3b3b',
         borderBottomColor:'transparent',
         borderTopColor:'transparent'
+    },
+    button: {
+        position: 'absolute',
+        top: 20,
+        padding: 10,
+    },
+    caption: {
+        fontSize: 20,
+        fontWeight: 'bold',
+        alignItems: 'center',
+    },
+    container2: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#F5FCFF',
+    },
+    welcome: {
+        fontSize: 20,
+        textAlign: 'center',
+        margin: 10,
+    },
+    instructions: {
+        textAlign: 'center',
+        color: '#333333',
+        marginBottom: 5,
     },
 });

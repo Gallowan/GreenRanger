@@ -7,9 +7,9 @@ import HomePage from "./pages/HomePage";
 import SportSelection from "./pages/SportSelection";
 import Account from "./pages/Account";
 import Settings from "./pages/Settings";
-import Profile from "./pages/Profile"
-import PlayerCard from "./pages/PlayerCard"
-import PlayerStats from "./pages/PlayerStats"
+import Profile from "./pages/Profile";
+import PlayerCard from "./pages/PlayerCard";
+import PlayerStats from "./pages/PlayerStats";
 
 export default class Routes extends Component {
     render() {
