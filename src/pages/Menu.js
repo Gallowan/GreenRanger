@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {Button, View, Text, TouchableOpacity, StyleSheet, Image, SafeAreaView} from 'react-native';
+import {Button, View, Text, TouchableOpacity, StyleSheet, ImageBackground, SafeAreaView} from 'react-native';
+import HomePage from './HomePage';
+import {Header} from 'react-native-elements';
 
 export default class Menu extends Component {
     state = {
@@ -8,42 +10,52 @@ export default class Menu extends Component {
             {
                 id: 0,
                 name: 'Football',
+                image: require('../images/categories/football.png')
             },
             {
                 id: 1,
                 name: 'Basketball (M)',
+                image: require('../images/categories/basketball_m.png')
             },
             {
                 id: 2,
                 name: 'Basketball (F)',
+                image: require('../images/categories/basketball_f.png')
             },
             {
                 id: 3,
                 name: 'Baseball',
+                image: require('../images/categories/baseball.png')
             },
             {
                 id: 4,
                 name: 'Soccer (M)',
+                image: require('../images/categories/soccer_m.png')
             },
             {
                 id: 5,
                 name: 'Soccer (F)',
+                image: require('../images/categories/soccer_f.png')
             },
             {
                 id: 6,
                 name: 'Softball',
+                image: require('../images/categories/softball.png')
             },
             {
                 id: 7,
                 name: 'Volleyball (F)',
+                image: require('../images/categories/volleyball_f.png')
             },
             {
                 id: 8,
                 name: 'Volleyball (M)',
+                image: require('../images/categories/volleyball_m.png')
             },
             {
                 id: 9,
                 name: 'Water Polo',
+                image: require('../images/categories/polo.png')
             }
         ]
     }
@@ -55,15 +67,30 @@ export default class Menu extends Component {
             <View>
                 <SafeAreaView style={styles.safeArea}>
                 </SafeAreaView>
-                {
+                <Header
+                    resizeMode="cover"
+                    backgroundColor={'#ff3b3b'}
+                >
+                </Header>
+                    {
                     this.state.names.map((item, index) => (
                         <TouchableOpacity
                             key = {item.id}
                             style = {styles.container}
-                            onPress = {() => this.goHome(item)}>
-                            <Text style = {styles.text}>
-                                {item.name}
-                            </Text>
+                            // onPress = {() => HomePage.REQUEST_XML_URL = "http://www.espn.com/espn/rss/ncf/news"}
+                            // onPress = {() => HomePage.setState({dummy: 1})}
+                            onPress={() => {
+                                HomePage.REQUEST_XML_URL = "http://www.espn.com/espn/rss/ncf/news";
+                                HomePage.refreshPage()
+                            }}>
+                            <ImageBackground
+                                style={styles.button}
+                                source={item.image}
+                            >
+                                <Text style = {styles.text}>
+                                    {item.name}
+                                </Text>
+                            </ImageBackground>
                         </TouchableOpacity>
                     ))
                 }
@@ -74,14 +101,22 @@ export default class Menu extends Component {
 
 const styles = StyleSheet.create ({
     container: {
-        padding: 10,
-        marginTop: 3,
-        backgroundColor: '#d9f9b1',
-        alignItems: 'center',
+        width: '100%',
+        paddingBottom: 2,
+        backgroundColor: '#000'
     },
     text: {
-        color: '#4f603c'
-    }
+        textAlign: 'right',
+        color: '#FFF'
+    },
+    button: {
+        backgroundColor: '#DDDDDD',
+        padding: 10
+    },
+    safeArea: {
+        marginTop: -25,
+        backgroundColor: '#ff3b3b'
+    },
 });
 
 Menu.propTypes = {

@@ -13,7 +13,7 @@ const menuLogo = require("../images/menu_logo.png");
 
 // In future, set this equal to the default sport set on
 // the user's account. -JG
-const REQUEST_XML_URL = 'http://www.espn.com/espn/rss/ncb/news';
+REQUEST_XML_URL = 'http://www.espn.com/espn/rss/ncb/news';
 //const REQUEST_XML_URL = 'https://www.cbsnews.com/rss/';
 
 export default class HomePage extends React.Component {
@@ -29,11 +29,15 @@ export default class HomePage extends React.Component {
         Actions.profile();
     }
 
+    static refreshPage(){
+        HomePage.reload()
+    }
+
     closeControlPanel = () => {
-        this._drawer.close()
+        this.drawer.close()
     };
     openControlPanel = () => {
-        this._drawer.open()
+        this.drawer.open()
     };
 
     // Constructor, involving the state of the RSSFeed
