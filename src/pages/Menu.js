@@ -1,8 +1,15 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {Button, View, Text, TouchableOpacity, StyleSheet, ImageBackground, SafeAreaView} from 'react-native';
+import {Button, View, Text, TouchableOpacity, StyleSheet, ImageBackground, Alert, SafeAreaView} from 'react-native';
 import HomePage from './HomePage';
 import {Header} from 'react-native-elements';
+import reloadURL from './HomePage';
+
+function reloadHome(text) {
+    reloadURL(text);
+}
+
+export var NEW_XML_URL = 'http://www.espn.com/espn/rss/ncf/news';
 
 export default class Menu extends Component {
     state = {
@@ -62,6 +69,7 @@ export default class Menu extends Component {
     alertItemName = (item) => {
         alert(item.name)
     }
+
     render() {
         return (
             <View>
@@ -80,8 +88,8 @@ export default class Menu extends Component {
                             // onPress = {() => HomePage.REQUEST_XML_URL = "http://www.espn.com/espn/rss/ncf/news"}
                             // onPress = {() => HomePage.setState({dummy: 1})}
                             onPress={() => {
-                                HomePage.REQUEST_XML_URL = "http://www.espn.com/espn/rss/ncf/news";
-                                HomePage.refreshPage()
+                                HomePage.reloadURL(NEW_XML_URL);
+                                Alert.alert("changed to " + NEW_XML_URL);
                             }}>
                             <ImageBackground
                                 style={styles.button}

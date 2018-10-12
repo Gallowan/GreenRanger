@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, TextInput, ListView, View, Image, TouchableOpacity, Alert, SafeAreaView} from 'react-native';
+import { StyleSheet, Text, TextInput, WebView, Linking, ListView, View, Image, TouchableOpacity, Alert, SafeAreaView} from 'react-native';
 import {SearchBar, Header, Button, Icon} from 'react-native-elements';
 import Glasses from "../components/Glasses";
 //import {createStackNavigator} from 'react-navigator';
@@ -13,7 +13,7 @@ const menuLogo = require("../images/menu_logo.png");
 
 // In future, set this equal to the default sport set on
 // the user's account. -JG
-REQUEST_XML_URL = 'http://www.espn.com/espn/rss/ncb/news';
+export var REQUEST_XML_URL = 'http://www.espn.com/espn/rss/ncb/news';
 //const REQUEST_XML_URL = 'https://www.cbsnews.com/rss/';
 
 export default class HomePage extends React.Component {
@@ -30,7 +30,7 @@ export default class HomePage extends React.Component {
     }
 
     static refreshPage(){
-        HomePage.reload()
+        this.reload()
     }
 
     closeControlPanel = () => {
@@ -168,7 +168,8 @@ export default class HomePage extends React.Component {
     }
 
     reloadURL(NEW_URL) {
-        this.fetchData(NEW_URL);
+        REQUEST_XML_URL = NEW_URL;
+        this.fetchData(REQUEST_XML_URL);
     }
 
     fetchData(URL) {
@@ -200,7 +201,23 @@ export default class HomePage extends React.Component {
 
     renderFeed(item) {
         return (
-            <TouchableOpacity onPress={() => {Alert.alert(item.title, item.description)}}>
+            <TouchableOpacity onPress={() => {
+                //Alert.alert(item.title, item.description)
+                return (
+                    // Test Code
+                    //Alert.alert("changed to " + REQUEST_XML_URL)
+                    <WebView
+                        ref={(ref) => { this.webview = ref; }}
+                        source={{ item }}
+                        onNavigationStateChange={(event) => {
+                            if (event.url !== uri) {
+                                this.webview.stopLoading();
+                                Linking.openURL(event.url);
+                            }
+                        }}
+                    />
+                );
+            }}>
                 <View style={styles.container}>
                     <Image
                         source={{uri: item.enclosure.link}}

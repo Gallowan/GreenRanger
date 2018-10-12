@@ -10,6 +10,7 @@ import Settings from "./pages/Settings";
 import Profile from "./pages/Profile";
 import PlayerCard from "./pages/PlayerCard";
 import PlayerStats from "./pages/PlayerStats";
+import Menu from "./pages/Menu"
 
 export default class Routes extends Component {
     render() {
@@ -25,6 +26,7 @@ export default class Routes extends Component {
                     <Scene key="profile" component={Profile} title="Profile"/>
                     <Scene key="playercard" component={PlayerCard} title="PlayerCard"/>
                     <Scene key="playerstats" component={PlayerStats} title="PlayerStats"/>
+                    <Scene key="menu" component={Menu} title="Menu"/>
                 </Stack>
             </Router>
         )
