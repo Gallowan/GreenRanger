@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, TextInput, WebView, Linking, ListView, View, Image, TouchableOpacity, Alert, SafeAreaView} from 'react-native';
+import { StyleSheet, Text, TextInput, WebView, Linking, ListView, View, Image, TouchableHighlight, Alert, SafeAreaView} from 'react-native';
 import {SearchBar, Header, Button, Icon} from 'react-native-elements';
 import Glasses from "../components/Glasses";
 //import {createStackNavigator} from 'react-navigator';
@@ -54,6 +54,7 @@ export default class HomePage extends React.Component {
             isOpen: false,
             selectedItem: 'About',
         };
+        this.handlePress = this.handlePress.bind(this);
     }
 
     toggle() {
@@ -91,73 +92,25 @@ export default class HomePage extends React.Component {
                 menuPosition={'right'}
             >
             <View>
-                {/*<View style={{  alignItems: 'center', justifyContent: 'center' }}>*/}
-                    {/*<Text>PlaceHolder Text</Text>*/}
-                    {/*<Button*/}
-                        {/*title="Go to Settings"*/}
-                        {/*onPress={() => this.props.navigation.navigate('Settings')}*/}
-                    {/*/>*/}
-                {/*</View>*/}
-
                 <SafeAreaView style={styles.safeArea}>
                 </SafeAreaView>
                 <Header
-                resizeMode="cover"
-                    // leftComponent={
-                    //     <Button
-                    //         title="Go to Settings"
-                    //         onPress={() => this.props.navigation.navigate('Settings')}
-                    //     />
-                    // }
-                leftComponent={{ icon: 'account-circle', color: '#fff', size: 35, onPress: () => this.goAccount(), underlayColor:'#ff3b3b'}}
-                centerComponent={
-                    <Image
-                        source={require("../images/GlassesWhiteVector.png")}
-                        style={styles.topLogo}
-                    />
-                }
-                // Following search bar used to be in center component. Looks unnecessary.
-
-                rightComponent={{ icon: 'menu', color: '#fff', size: 35, onPress: () => this.toggle(), underlayColor:'#ff3b3b'}}
-
-                //rightComponent={{ icon: 'menu', color: '#fff', size: 30, onPress: () => this.goSelection(), underlayColor:'#ff3b3b'}}
-                backgroundColor={'#ff3b3b'}
+                    resizeMode="cover"
+                    leftComponent={{ icon: 'account-circle', color: '#fff', size: 35, onPress: () => this.goAccount(), underlayColor:'#ff3b3b'}}
+                    centerComponent={
+                        <Image
+                            source={require("../images/GlassesWhiteVector.png")}
+                            style={styles.topLogo}
+                        />
+                    }
+                    rightComponent={{ icon: 'menu', color: '#fff', size: 35, onPress: () => this.toggle(), underlayColor:'#ff3b3b'}}
+                    backgroundColor={'#ff3b3b'}
                 />
                 <ListView
                     dataSource={this.state.dataSource}
                     renderRow={this.renderFeed}
                     style={styles.ListView}
                 />
-                {/*<SideMenu*/}
-                    {/*menu={menu}*/}
-                    {/*isOpen={this.state.isOpen}*/}
-                    {/*onChange={isOpen => this.updateMenuState(isOpen)}*/}
-                {/*>*/}
-                    {/*<View style={styles.container2}>*/}
-                        {/*<Text style={styles.welcome}>*/}
-                            {/*Welcome to React Native!*/}
-                        {/*</Text>*/}
-                        {/*<Text style={styles.instructions}>*/}
-                            {/*To get started, edit index.ios.js*/}
-                        {/*</Text>*/}
-                        {/*<Text style={styles.instructions}>*/}
-                            {/*Press Cmd+R to reload,{'\n'}*/}
-                            {/*Cmd+Control+Z for dev menu*/}
-                        {/*</Text>*/}
-                        {/*<Text style={styles.instructions}>*/}
-                            {/*Current selected menu item is: {this.state.selectedItem}*/}
-                        {/*</Text>*/}
-                    {/*</View>*/}
-                    {/*<TouchableOpacity*/}
-                        {/*onPress={this.toggle}*/}
-                        {/*style={styles.button}*/}
-                    {/*>*/}
-                        {/*<Image*/}
-                            {/*source={menuLogo}*/}
-                            {/*style={{ width: 32, height: 32 }}*/}
-                        {/*/>*/}
-                    {/*</TouchableOpacity>*/}
-                {/*</SideMenu>*/}
             </View>
             </SideMenu>
         );
@@ -199,9 +152,15 @@ export default class HomePage extends React.Component {
         );
     }
 
+    handlePress() {
+        const { title, entries } = this.state;
+        this.props.navigator.push('feed', { title, entries });
+    }
+
     renderFeed(item) {
         return (
-            <TouchableOpacity onPress={() => {
+            <TouchableHighlight
+                onPress={() => {
                 //Alert.alert(item.title, item.description)
                 return (
                     // Test Code
@@ -228,7 +187,7 @@ export default class HomePage extends React.Component {
                         <Text style={styles.description} numberOfLines={3}>{item.description}</Text>
                     </View>
                 </View>
-            </TouchableOpacity>
+            </TouchableHighlight>
         );
     }
 
