@@ -23,10 +23,10 @@ export default class HomePage extends React.Component {
     // }
 
     // Unused, but for burger menu.
-    var closeControlPanel = () => {
+    closeControlPanel = () => {
         this.drawer.close()
     };
-    var openControlPanel = () => {
+    openControlPanel = () => {
         this.drawer.open()
     };
 
