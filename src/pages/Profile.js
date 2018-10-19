@@ -24,10 +24,10 @@ export default class Profile extends Component {
         };
     }
 
-    goCard() {
+    static goCard() {
         Actions.playercard();
     }
-    goStats() {
+    static goStats() {
         Actions.playerstats();
     }
 

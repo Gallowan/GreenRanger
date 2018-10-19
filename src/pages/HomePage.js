@@ -1,15 +1,10 @@
 import React from 'react';
-import { StyleSheet, Text, TextInput, WebView, Linking, ListView, View, Image, TouchableHighlight, Alert, SafeAreaView} from 'react-native';
-import {SearchBar, Header, Button, Icon} from 'react-native-elements';
-import Glasses from "../components/Glasses";
-//import {createStackNavigator} from 'react-navigator';
+import { StyleSheet, Text, WebView, Linking, ListView, View,
+    Image, TouchableHighlight, Alert, SafeAreaView} from 'react-native';
+import {SearchBar, Header} from 'react-native-elements';
 import {Actions} from 'react-native-router-flux';
-import Swiper from 'react-native-swiper';
-import Drawer from 'react-native-drawer';
 import SideMenu from 'react-native-side-menu';
 import Menu from './Menu';
-import Logo from "../components/Logo";
-const menuLogo = require("../images/menu_logo.png");
 
 // In future, set this equal to the default sport set on
 // the user's account. -JG
@@ -18,25 +13,20 @@ export var REQUEST_XML_URL = 'http://www.espn.com/espn/rss/ncb/news';
 
 export default class HomePage extends React.Component {
 
-    // Uncommenting this will crash the app because sportsSelection doesn't exist yet
-    goSelection() {
-        Actions.sportselection();
-    }
-    goAccount(){
+    goAccount() {
         Actions.account();
     }
-    goProfile(){
-        Actions.profile();
-    }
 
-    static refreshPage(){
-        this.reload()
-    }
+    // Might be useful for feed
+    // static refreshPage(){
+    //     this.reload()
+    // }
 
-    closeControlPanel = () => {
+    // Unused, but for burger menu.
+    var closeControlPanel = () => {
         this.drawer.close()
     };
-    openControlPanel = () => {
+    var openControlPanel = () => {
         this.drawer.open()
     };
 
@@ -57,15 +47,17 @@ export default class HomePage extends React.Component {
         this.handlePress = this.handlePress.bind(this);
     }
 
+    // Calling toggle() opens and closes the selection menu
     toggle() {
         this.setState({
             isOpen: !this.state.isOpen,
         });
     }
+    // Updates state of menu
     updateMenuState(isOpen) {
         this.setState({ isOpen });
     }
-
+    // *shrug*
     onMenuItemSelected = item =>
         this.setState({
             isOpen: false,
@@ -83,8 +75,6 @@ export default class HomePage extends React.Component {
             // The view with the placeholder text needs to be it's own navigation bar
             // so that we can actually move between screens without using routes (deprecated?).
             // Ideally it's just navigation buttons that take you from one screen to another.
-            // Idk if the onPress is working because the settings page doesn't have anything
-            // yet so that needs to be tested.
             <SideMenu
                 menu={menu}
                 isOpen={this.state.isOpen}
@@ -116,15 +106,18 @@ export default class HomePage extends React.Component {
         );
     }
 
+    // Checks if URL is mounted
     componentDidMount() {
         this.fetchData(REQUEST_XML_URL);
     }
 
+    // Trying to make this work for inputting a new URL but it's not working
     reloadURL(NEW_URL) {
         REQUEST_XML_URL = NEW_URL;
         this.fetchData(REQUEST_XML_URL);
     }
 
+    // Concatenates URL onto the end of the RSSFeed api and sets it into the reader
     fetchData(URL) {
         const targetURL = 'https://api.rss2json.com/v1/api.json?rss_url=';
 
@@ -142,6 +135,7 @@ export default class HomePage extends React.Component {
             .done();
     }
 
+    // Fail-safe
     renderLoadingView() {
         return (
             <View style={styles.container}>
@@ -152,18 +146,22 @@ export default class HomePage extends React.Component {
         );
     }
 
+    // Trying to use this to handle button presses, but largely unused
     handlePress() {
         const { title, entries } = this.state;
         this.props.navigator.push('feed', { title, entries });
     }
 
+    // Alert was used before and made it pop up as a notification-style thing on the screen,
+    // but we want it to prompt a webview. Attempted to change it, but it isn't really
+    // working as intended. I'm going to have to figure that out.
     renderFeed(item) {
         return (
             <TouchableHighlight
                 onPress={() => {
                 //Alert.alert(item.title, item.description)
                 return (
-                    // Test Code
+                    // Test Code to see if variable changes from menu.js. It doesn't.
                     //Alert.alert("changed to " + REQUEST_XML_URL)
                     <WebView
                         ref={(ref) => { this.webview = ref; }}

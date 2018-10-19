@@ -4,6 +4,14 @@ import {Button, View, Text, TouchableOpacity, StyleSheet, Image, SafeAreaView} f
 import {Component} from "react";
 import {Actions} from 'react-native-router-flux';
 
+/* *******************
+    *******************
+   ******UNUSED*******
+    ****See Menu.js****
+   *******************
+    *******************
+ */
+
 export default class SportSelection extends Component {
     goHome() {
         Actions.home();
