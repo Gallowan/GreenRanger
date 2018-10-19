@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, WebView, ListView, View,
+import { StyleSheet, Text, WebView, Linking, ListView, View,
     Image, TouchableHighlight, Alert, SafeAreaView} from 'react-native';
 import {SearchBar, Header} from 'react-native-elements';
 import {Actions} from 'react-native-router-flux';
@@ -162,17 +162,17 @@ export default class HomePage extends React.Component {
                 //Alert.alert(item.title, item.description)
                 return (
                     // Test Code to see if variable changes from menu.js. It doesn't.
-                    Alert.alert("changed to " + REQUEST_XML_URL)
-                    // {/*<WebView*/}
-                    //     {/*ref={(ref) => { this.webview = ref; }}*/}
-                    //     {/*source={{ item }}*/}
-                    //     {/*onNavigationStateChange={(event) => {*/}
-                    //         {/*if (event.url !== uri) {*/}
-                    //             {/*this.webview.stopLoading();*/}
-                    //             {/*Linking.openURL(event.url);*/}
-                    //         {/*}*/}
-                    //     {/*}}*/}
-                    // {/*/>*/}
+                    //Alert.alert("changed to " + REQUEST_XML_URL)
+                    <WebView
+                        ref={(ref) => { this.webview = ref; }}
+                        source={{ item }}
+                        onNavigationStateChange={(event) => {
+                            if (event.url !== uri) {
+                                this.webview.stopLoading();
+                                Linking.openURL(event.url);
+                            }
+                        }}
+                    />
                 );
             }}>
                 <View style={styles.container}>
