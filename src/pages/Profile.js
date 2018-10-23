@@ -24,10 +24,10 @@ export default class Profile extends Component {
         };
     }
 
-    static goCard() {
+    goCard() {
         Actions.playercard();
     }
-    static goStats() {
+    goStats() {
         Actions.playerstats();
     }
 
@@ -210,7 +210,7 @@ const styles = StyleSheet.create({
         textShadowRadius:1,
     },
     HighlightsContainer: {
-        marginTop: (Platform.OS = 'ios') ? 20 : 0,
+        //marginTop: (Platform.OS = 'ios') ? 20 : 0,
     },
     buttonContainer: {
       alignItems: 'center',
