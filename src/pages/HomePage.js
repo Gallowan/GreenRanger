@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, WebView, Linking, ListView, View,
-    Image, TouchableHighlight, Alert, SafeAreaView} from 'react-native';
+    Image, TouchableHighlight, Alert, SafeAreaView, Platform} from 'react-native';
 import {SearchBar, Header} from 'react-native-elements';
 import {Actions} from 'react-native-router-flux';
 import SideMenu from 'react-native-side-menu';
@@ -85,6 +85,7 @@ export default class HomePage extends React.Component {
                 <SafeAreaView style={styles.safeArea}>
                 </SafeAreaView>
                 <Header
+                    style={styles.droidSafeView}
                     resizeMode="cover"
                     leftComponent={{ icon: 'account-circle', color: '#fff', size: 35, onPress: () => this.goAccount(), underlayColor:'#ff3b3b'}}
                     centerComponent={
@@ -198,6 +199,11 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         alignItems: 'center',
         justifyContent: 'center',
+    },
+    droidSafeView: {
+        flex: 1,
+        backgroundColor: '#ff3b3b',
+        paddingTop: Platform.OS === 'android' ? 25 : 0
     },
     topLogo: {
         width: 140,

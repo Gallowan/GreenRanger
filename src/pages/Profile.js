@@ -144,7 +144,11 @@ const styles = StyleSheet.create({
         paddingTop: 200,
         flex: 1
     },
-    headerContainer: {},
+    headerContainer: {
+        flex: 1,
+        backgroundColor: '#ff3b3b',
+        paddingTop: Platform.OS === 'android' ? 25 : 0
+    },
     headerColumn: {
         backgroundColor: 'transparent',
         ...Platform.select({

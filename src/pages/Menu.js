@@ -88,6 +88,7 @@ export default class Menu extends Component {
                 <Header
                     resizeMode="cover"
                     backgroundColor={'#ff3b3b'}
+                    style={styles.droidSafeView}
                 >
                 </Header>
                     {
