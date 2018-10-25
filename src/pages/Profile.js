@@ -146,7 +146,7 @@ const styles = StyleSheet.create({
     },
     headerContainer: {
         flex: 1,
-        backgroundColor: '#ff3b3b',
+        //backgroundColor: '#ff3b3b',
         paddingTop: Platform.OS === 'android' ? 25 : 0
     },
     headerColumn: {
