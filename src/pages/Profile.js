@@ -5,6 +5,7 @@ import {
 } from 'react-native';
 import {Header, Card, Avatar, Button, Icon} from 'react-native-elements';
 import {Actions} from "react-native-router-flux";
+//import HomePage from "./src/pages/HomePage";
 
 // For easy user implementation
 // const users = [

@@ -1,9 +1,12 @@
 import React, {Component} from 'react';
 import { StyleSheet, Text, View, StatusBar } from 'react-native';
 import firebase from 'firebase';
-import Routes from './src/Routes';
-import { StackNavigator } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation';
+import Routes from './src/Routes';
+
+//Screen Imports for react-navigator
+import Login from "./src/pages/Login";
+import HomePage from "./src/pages/HomePage";
 
 const config = {
     apiKey: "AIzaSyD6o-wUK-t7Oo9yJL-YczGS3rEXAN4Gk-E",
@@ -19,6 +22,7 @@ firebase.initializeApp(config);
 export default class App extends React.Component {
   render() {
       return <View style={styles.container}>
+          {/* You may only have one or the other, you cannot pass in both to the same view*/}
           <Routes/>
           {/*<RootStack/>*/}
 
@@ -33,11 +37,11 @@ export default class App extends React.Component {
     done with "this.props.navigation.navigate("SceenName");", but if you want to go the SAME screen you
     are on, you must use "this.props.navigation.push("SameScreenName")". Take notes boys.
  */
-// const RootStack = StackNavigator(
-//     {
-//         Home: Login,
-//         SignUp: SignUp,
-//     });
+ const RootStack = createStackNavigator(
+     {
+         Login: Login,
+         //HomeScreen: HomePage,
+     });
 
 const styles = StyleSheet.create({
   container: {

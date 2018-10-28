@@ -1,27 +1,31 @@
 import React, {Component} from 'react';
-import {StyleSheet, Text, View, StatusBar, TouchableOpacity, ImageBackground, TextInput} from 'react-native';
+import {StyleSheet, Text, View, StatusBar, TouchableOpacity, ImageBackground, TextInput, Button} from 'react-native';
 import {Actions} from 'react-native-router-flux';
-import { Button } from 'react-native';
-import { StackNavigator } from 'react-navigation';
 
 import Logo from "../components/Logo";
 
 
-export default class Login extends React.Component {
+class Login extends React.Component {
     /*
      * This method originally was used to navigate using Routes.js, soon to be deprecated
      */
     signup() {
         // Temporarily commented out to test the react-navigation library
-        //Actions.signup();
+        Actions.signup();
     }
     /*
      * This method originally was used to navigate using Routes.js, soon to be deprecated
      */
     goHome() {
         // Temporarily commented out to test the react-navigation library
-        //Actions.home();
+        Actions.home();
     }
+
+    static navigationOptions = {
+        header: null
+    }
+
+
     render() {
         return(
             <ImageBackground style={styles.container}
@@ -52,7 +56,7 @@ export default class Login extends React.Component {
                     {/* This code is the login button on the login page */}
                     {/*<Button
                         title = "Login"
-                        onPress={() => this.prop.navigation.navigate('HomePage')}
+                        onPress={() => this.prop.navigation.navigate('HomeScreen')}
                     />*/}
                     <TouchableOpacity style={styles.button} onPress={this.goHome}>
                         <Text style={styles.buttonText}>Login</Text>
@@ -68,6 +72,8 @@ export default class Login extends React.Component {
         )
     }
 }
+
+export default Login;
 
 const styles = StyleSheet.create({
     button: {
