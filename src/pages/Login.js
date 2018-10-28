@@ -1,16 +1,26 @@
 import React, {Component} from 'react';
 import {StyleSheet, Text, View, StatusBar, TouchableOpacity, ImageBackground, TextInput} from 'react-native';
 import {Actions} from 'react-native-router-flux';
+import { Button } from 'react-native';
+import { StackNavigator } from 'react-navigation';
 
 import Logo from "../components/Logo";
 
 
-export default class Login extends Component {
+export default class Login extends React.Component {
+    /*
+     * This method originally was used to navigate using Routes.js, soon to be deprecated
+     */
     signup() {
-        Actions.signup();
+        // Temporarily commented out to test the react-navigation library
+        //Actions.signup();
     }
+    /*
+     * This method originally was used to navigate using Routes.js, soon to be deprecated
+     */
     goHome() {
-        Actions.home();
+        // Temporarily commented out to test the react-navigation library
+        //Actions.home();
     }
     render() {
         return(
@@ -20,6 +30,7 @@ export default class Login extends Component {
                 <View style={styles.container}>
                     {/*<View style ={styles.backgroundImage}>*/}
                     <Logo/>
+                    {/* This code is the email box on the login page */}
                     <TextInput style={styles.inputBox}
                                underlineColorAndroid={"rgba(0,0,0,0)"}
                                placeholder={"Email"}
@@ -36,7 +47,13 @@ export default class Login extends Component {
                                placeholderTextColor={"#ffffff"}
                                ref={(input) => this.password = input}
                     />
+
+
                     {/* This code is the login button on the login page */}
+                    {/*<Button
+                        title = "Login"
+                        onPress={() => this.prop.navigation.navigate('HomePage')}
+                    />*/}
                     <TouchableOpacity style={styles.button} onPress={this.goHome}>
                         <Text style={styles.buttonText}>Login</Text>
                     </TouchableOpacity>

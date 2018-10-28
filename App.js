@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import { StyleSheet, Text, View, StatusBar } from 'react-native';
 import firebase from 'firebase';
 import Routes from './src/Routes';
+import { StackNavigator } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation';
 
 const config = {
     apiKey: "AIzaSyD6o-wUK-t7Oo9yJL-YczGS3rEXAN4Gk-E",
@@ -14,16 +16,28 @@ const config = {
 };
 firebase.initializeApp(config);
 
-export default class App extends Component {
+export default class App extends React.Component {
   render() {
-    return (
-      <View style={styles.container}>
+      return <View style={styles.container}>
+          <Routes/>
+          {/*<RootStack/>*/}
 
-        <Routes/>
-      </View>
-    );
+      </View>;
   }
 }
+
+/*
+    This stack navigator will provide a list of the screens that a page can go to. The addition of a
+    screen means a new "route" is created behind the scenes, you cannot just go to an existing screen
+    from any screen unless it is explicitly stated in this StackNavigator. Navigating to a new page is
+    done with "this.props.navigation.navigate("SceenName");", but if you want to go the SAME screen you
+    are on, you must use "this.props.navigation.push("SameScreenName")". Take notes boys.
+ */
+// const RootStack = StackNavigator(
+//     {
+//         Home: Login,
+//         SignUp: SignUp,
+//     });
 
 const styles = StyleSheet.create({
   container: {
