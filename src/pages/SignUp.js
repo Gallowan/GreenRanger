@@ -1,10 +1,9 @@
 import React, {Component} from 'react';
-import {StyleSheet, Text, View, StatusBar, TouchableOpacity, ImageBackground, TextInput} from 'react-native';
+import {StyleSheet, Text, View, StatusBar, TouchableOpacity, ImageBackground, TextInput, Alert} from 'react-native';
 import {Actions} from 'react-native-router-flux';
+import * as firebase from 'firebase';
 
 import Logo from "../components/Logo";
-
-
 
 export default class SignUp extends Component {
 
@@ -15,8 +14,34 @@ export default class SignUp extends Component {
         header:null
     }
 
+    constructor(props){
+        super(props);
+        this.email = "";
+        this.password = "";
+        // this.state = {
+        //     email: "",
+        //     password: "",
+        // };
+    }
+
+    async signup(email, pass) {
+        try {
+            await firebase.auth()
+                .createUserWithEmailAndPassword(this.email, this.password);
+
+            Alert.alert("Account created!");
+            console.log("Account created");
+
+            // Navigate to the Home page, the user is auto logged in
+
+        } catch (error) {
+            console.log(error.toString())
+        }
+    }
+
     render() {
         return(
+            this.signup(),
             <ImageBackground style={styles.container}
                              source={require("../images/background-image.png")}
                              blurRadius={5}>
@@ -42,6 +67,7 @@ export default class SignUp extends Component {
                                placeholderTextColor={"#ffffff"}
                                selectionColor={"#ffffff"}
                                keyboardType={"email-address"}
+                               ref={(input) => this.email = input}
                                onSubmitEditing={() => this.password.focus()}
                     />
                     {/* This code is the password box on the login page */}
@@ -52,12 +78,15 @@ export default class SignUp extends Component {
                                placeholderTextColor={"#ffffff"}
                                ref={(input) => this.password = input}
                     />
-                    <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.goBack()}>
+                    <TouchableOpacity style={styles.button} onPress={() => firebase.auth().createUserWithEmailAndPassword}>
                         <Text style={styles.buttonText}>Sign Up</Text>
                     </TouchableOpacity>
                     <View style={styles.loginTextContainer}>
                         <Text style={styles.loginText}>Already have an account? </Text>
-                        <TouchableOpacity onPress={() => this.props.navigation.goBack()}>
+                        {/*<TouchableOpacity onPress={() => this.props.navigation.goBack()}>*/}
+                            <TouchableOpacity onPress={() => Alert.alert(this.email + this.password)
+                            }>
+
                             <Text style={styles.loginButton}>Login!</Text>
                         </TouchableOpacity>
                     </View>

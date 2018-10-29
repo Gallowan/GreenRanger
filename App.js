@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { StyleSheet, Text, View, StatusBar } from 'react-native';
-import firebase from 'firebase';
+import * as firebase from 'firebase';
 import { createStackNavigator } from 'react-navigation';
 import Routes from './src/Routes';
 
@@ -19,14 +19,13 @@ import Menu from './src/pages/Menu'
 // import {SignUp, Login, HomePage, SportSelection, Account,
 //     Settings, Profile, PlayerCard, PlayerStats, Menu} from "./src/pages/";
 
-const config = {
-    apiKey: "AIzaSyD6o-wUK-t7Oo9yJL-YczGS3rEXAN4Gk-E",
-    authDomain: "greenranger-94002.firebaseapp.com",
-    databaseURL: "https://greenranger-94002.firebaseio.com",
-    storageBucket: "",
-    //projectId: "greenranger-94002",
-    //storageBucket: "greenranger-94002.appspot.com",
-    //messagingSenderId: "124806097426"
+var config = {
+    apiKey: "AIzaSyC1XjsQk7mcPz1tADoSdtJp5S-eKtxa5TU",
+    authDomain: "greenranger-80cb1.firebaseapp.com",
+    databaseURL: "https://greenranger-80cb1.firebaseio.com",
+    projectId: "greenranger-80cb1",
+    storageBucket: "greenranger-80cb1.appspot.com",
+    messagingSenderId: "556150713101"
 };
 firebase.initializeApp(config);
 
