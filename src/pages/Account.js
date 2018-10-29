@@ -5,12 +5,12 @@ import {Actions} from "react-native-router-flux";
 
 export default class Account extends React.Component {
 
-    goProfile() {
-        Actions.profile();
-    }
-    goSettings() {
-        Actions.settings();
-    }
+    // goProfile() {
+    //     Actions.profile();
+    // }
+    // goSettings() {
+    //     Actions.settings();
+    // }
 
     render() {
         return(
@@ -31,13 +31,13 @@ export default class Account extends React.Component {
                     source={require('../images/test_isaac.png')
                     }
                 />
-                <TouchableOpacity style={styles.button} onPress={this.goProfile}>
+                <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate('Profile')}>
                     <Text style={styles.buttonText}>View Profile</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.button} onPress={this.goSettings}>
+                <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate('Settings')}>
                     <Text style={styles.buttonText}>Settings</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.button} onPress={this.goHome}>
+                <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate('Settings')}>
                     <Text style={styles.buttonText}>Help</Text>
                 </TouchableOpacity>
                 <Icon

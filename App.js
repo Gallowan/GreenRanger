@@ -5,8 +5,19 @@ import { createStackNavigator } from 'react-navigation';
 import Routes from './src/Routes';
 
 //Screen Imports for react-navigator
-import Login from "./src/pages/Login";
+import SignUp from './src/pages/SignUp';
+import Login from './src/pages/Login';
 import HomePage from "./src/pages/HomePage";
+import SportSelection from './src/pages/SportSelection'
+import Account from './src/pages/Account'
+import Settings from './src/pages/Settings'
+import Profile from './src/pages/Profile'
+import PlayerCard from './src/pages/PlayerCard'
+import PlayerStats from './src/pages/PlayerStats'
+import Menu from './src/pages/Menu'
+
+// import {SignUp, Login, HomePage, SportSelection, Account,
+//     Settings, Profile, PlayerCard, PlayerStats, Menu} from "./src/pages/";
 
 const config = {
     apiKey: "AIzaSyD6o-wUK-t7Oo9yJL-YczGS3rEXAN4Gk-E",
@@ -21,14 +32,16 @@ firebase.initializeApp(config);
 
 export default class App extends React.Component {
   render() {
-      return <View style={styles.container}>
-          {/* You may only have one or the other, you cannot pass in both to the same view*/}
-          <Routes/>
-          {/*<RootStack/>*/}
-
-      </View>;
+      return(
+          <RootStack/>
+      )
   }
 }
+
+//Code that was inside of the return statement. Removed for visibility during testing.
+{/*<View style={styles.container}>*/}
+    {/*/!*You may only have one or the other, you cannot pass in both to the same view*!/*/}
+    {/*/!*<Routes/>*!/*/}
 
 /*
     This stack navigator will provide a list of the screens that a page can go to. The addition of a
@@ -40,7 +53,14 @@ export default class App extends React.Component {
  const RootStack = createStackNavigator(
      {
          Login: Login,
-         //HomeScreen: HomePage,
+         SignUp: SignUp,
+         HomePage: HomePage,
+         Menu: Menu,
+         Account: Account,
+         Settings: Settings,
+         Profile: Profile,
+         PlayerCard: PlayerCard,
+         PlayerStats: PlayerStats,
      });
 
 const styles = StyleSheet.create({

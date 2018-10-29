@@ -25,12 +25,13 @@ export default class Profile extends Component {
         };
     }
 
-    goCard() {
-        Actions.playercard();
-    }
-    goStats() {
-        Actions.playerstats();
-    }
+    // Leftover code from actions instead of navigation
+    // goCard() {
+    //     Actions.playercard();
+    // }
+    // goStats() {
+    //     Actions.playerstats();
+    // }
 
     // componentDidMount() {
     //     this.onRefresh()
@@ -108,10 +109,10 @@ export default class Profile extends Component {
                     />
                 </View>
                 <View style={styles.buttonContainer}>
-                    <TouchableOpacity style={styles.button} onPress={this.goCard}>
+                    <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate('PlayerCard')}>
                         <Text style={styles.buttonText}>Player Card</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.button} onPress={this.goStats}>
+                    <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate('PlayerStats')}>
                         <Text style={styles.buttonText}>Stats</Text>
                     </TouchableOpacity>
                 </View>

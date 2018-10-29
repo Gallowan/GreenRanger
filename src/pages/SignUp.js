@@ -8,9 +8,9 @@ import Logo from "../components/Logo";
 
 export default class SignUp extends Component {
 
-    goBack(){
-        Actions.pop();
-    }
+    // goBack(){
+    //     Actions.pop();
+    // }
 
     render() {
         return(
@@ -49,12 +49,12 @@ export default class SignUp extends Component {
                                placeholderTextColor={"#ffffff"}
                                ref={(input) => this.password = input}
                     />
-                    <TouchableOpacity style={styles.button} onPress={this.goHome}>
+                    <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.goBack()}>
                         <Text style={styles.buttonText}>Sign Up</Text>
                     </TouchableOpacity>
                     <View style={styles.loginTextContainer}>
                         <Text style={styles.loginText}>Already have an account? </Text>
-                        <TouchableOpacity onPress={this.goBack}>
+                        <TouchableOpacity onPress={() => this.props.navigation.goBack()}>
                             <Text style={styles.loginButton}>Login!</Text>
                         </TouchableOpacity>
                     </View>

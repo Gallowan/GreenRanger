@@ -2,10 +2,11 @@ import React, {Component} from 'react';
 import {StyleSheet, Text, View, StatusBar, TouchableOpacity, ImageBackground, TextInput, Button} from 'react-native';
 import {Actions} from 'react-native-router-flux';
 
+
 import Logo from "../components/Logo";
 
 
-class Login extends React.Component {
+export default class Login extends React.Component {
     /*
      * This method originally was used to navigate using Routes.js, soon to be deprecated
      */
@@ -58,12 +59,12 @@ class Login extends React.Component {
                         title = "Login"
                         onPress={() => this.prop.navigation.navigate('HomeScreen')}
                     />*/}
-                    <TouchableOpacity style={styles.button} onPress={this.goHome}>
+                    <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate('HomePage')}>
                         <Text style={styles.buttonText}>Login</Text>
                     </TouchableOpacity>
                     <View style={styles.signUpTextContainer}>
                         <Text style={styles.signUpText}>Don't have an account yet? </Text>
-                        <TouchableOpacity onPress={this.signup}>
+                        <TouchableOpacity onPress={() => this.props.navigation.navigate('SignUp')}>
                             <Text style={styles.signUpButton}>Sign Up!</Text>
                         </TouchableOpacity>
                     </View>
@@ -72,8 +73,6 @@ class Login extends React.Component {
         )
     }
 }
-
-export default Login;
 
 const styles = StyleSheet.create({
     button: {

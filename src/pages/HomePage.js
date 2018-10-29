@@ -13,9 +13,13 @@ export var REQUEST_XML_URL = 'http://www.espn.com/espn/rss/ncb/news';
 
 export default class HomePage extends React.Component {
 
-    goAccount() {
-        Actions.account();
+    static navigationOptions = {
+        header:null
     }
+
+    // goAccount() {
+    //     Actions.account();
+    // }
 
     // Might be useful for feed
     // static refreshPage(){
@@ -87,14 +91,16 @@ export default class HomePage extends React.Component {
                 <Header
                     style={styles.droidSafeView}
                     resizeMode="cover"
-                    leftComponent={{ icon: 'account-circle', color: '#fff', size: 35, onPress: () => this.goAccount(), underlayColor:'#ff3b3b'}}
+                    leftComponent={{ icon: 'account-circle', color: '#fff', size: 35,
+                        onPress: () => this.props.navigation.navigate('Account'), underlayColor:'#ff3b3b'}}
                     centerComponent={
                         <Image
                             source={require("../images/GlassesWhiteVector.png")}
                             style={styles.topLogo}
                         />
                     }
-                    rightComponent={{ icon: 'menu', color: '#fff', size: 35, onPress: () => this.toggle(), underlayColor:'#ff3b3b'}}
+                    rightComponent={{ icon: 'menu', color: '#fff', size: 35,
+                        onPress: () => this.toggle(), underlayColor:'#ff3b3b'}}
                     backgroundColor={'#ff3b3b'}
                 />
                 <ListView
