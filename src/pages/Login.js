@@ -26,6 +26,31 @@ export default class Login extends React.Component {
         header: null
     }
 
+    state = {
+        email: "",
+        password:""
+    };
+    handleEmail = (text) => {
+        this.setState({ email: text })
+    };
+    handlePassword = (text) => {
+        this.setState({ password: text })
+    };
+
+    async login(email, pass) {
+        try {
+            await firebase.auth()
+                .signInWithEmailAndPassword(email, pass);
+
+            console.log("Logged In!");
+
+            // Navigate to the Home page
+
+        } catch (error) {
+            console.log(error.toString())
+        }
+
+    }
 
     render() {
         return(
@@ -42,6 +67,7 @@ export default class Login extends React.Component {
                                placeholderTextColor={"#ffffff"}
                                selectionColor={"#ffffff"}
                                keyboardType={"email-address"}
+                               onChangeText = {this.handleEmail}
                                onSubmitEditing={() => this.password.focus()}
                     />
                     {/* This code is the password box on the login page */}
@@ -50,6 +76,7 @@ export default class Login extends React.Component {
                                placeholder={"Password"}
                                secureTextEntry={true}
                                placeholderTextColor={"#ffffff"}
+                               onChangeText = {this.handlePassword}
                                ref={(input) => this.password = input}
                     />
 
@@ -59,7 +86,8 @@ export default class Login extends React.Component {
                         title = "Login"
                         onPress={() => this.prop.navigation.navigate('HomeScreen')}
                     />*/}
-                    <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate('HomePage')}>
+                    <TouchableOpacity style={styles.button} onPress={() => {this.login(this.state.email, this.state.password);
+                        this.props.navigation.navigate('HomePage')}}>
                         <Text style={styles.buttonText}>Login</Text>
                     </TouchableOpacity>
                     <View style={styles.signUpTextContainer}>

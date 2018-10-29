@@ -13,21 +13,32 @@ export default class SignUp extends Component {
     static navigationOptions = {
         header:null
     }
+    //
+    // constructor(props){
+    //     super(props);
+    //     // this.state = "";
+    //     // this.password = "";
+    //     this.state = {
+    //         email: '',
+    //         password: '',
+    //     };
+    // }
 
-    constructor(props){
-        super(props);
-        this.email = "";
-        this.password = "";
-        // this.state = {
-        //     email: "",
-        //     password: "",
-        // };
-    }
+    state = {
+        email: "",
+        password:""
+    };
+    handleEmail = (text) => {
+        this.setState({ email: text })
+    };
+    handlePassword = (text) => {
+        this.setState({ password: text })
+    };
 
-    async signup(email, pass) {
+    async signUp(email, pass) {
         try {
             await firebase.auth()
-                .createUserWithEmailAndPassword(this.email, this.password);
+                .createUserWithEmailAndPassword(this.state.email, this.state.password);
 
             Alert.alert("Account created!");
             console.log("Account created");
@@ -41,7 +52,6 @@ export default class SignUp extends Component {
 
     render() {
         return(
-            this.signup(),
             <ImageBackground style={styles.container}
                              source={require("../images/background-image.png")}
                              blurRadius={5}>
@@ -67,8 +77,9 @@ export default class SignUp extends Component {
                                placeholderTextColor={"#ffffff"}
                                selectionColor={"#ffffff"}
                                keyboardType={"email-address"}
-                               ref={(input) => this.email = input}
-                               onSubmitEditing={() => this.password.focus()}
+                               // ref={(input) => email = input}
+                               onChangeText = {this.handleEmail}
+                               onSubmitEditing={() => password.focus()}
                     />
                     {/* This code is the password box on the login page */}
                     <TextInput style={styles.inputBox}
@@ -76,15 +87,17 @@ export default class SignUp extends Component {
                                placeholder={"Choose a password."}
                                secureTextEntry={true}
                                placeholderTextColor={"#ffffff"}
-                               ref={(input) => this.password = input}
+                               ref={(input) => password = input}
+                               onChangeText = {this.handlePassword}
                     />
-                    <TouchableOpacity style={styles.button} onPress={() => firebase.auth().createUserWithEmailAndPassword}>
+                    <TouchableOpacity style={styles.button} onPress={() => {this.signUp(this.state.email, this.state.password);
+                        this.props.navigation.goBack()}}>
                         <Text style={styles.buttonText}>Sign Up</Text>
                     </TouchableOpacity>
                     <View style={styles.loginTextContainer}>
                         <Text style={styles.loginText}>Already have an account? </Text>
                         {/*<TouchableOpacity onPress={() => this.props.navigation.goBack()}>*/}
-                            <TouchableOpacity onPress={() => Alert.alert(this.email + this.password)
+                            <TouchableOpacity onPress={() => Alert.alert(this.state.email + " " + this.state.password)
                             }>
 
                             <Text style={styles.loginButton}>Login!</Text>
