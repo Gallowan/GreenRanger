@@ -4,6 +4,10 @@ import {REQUEST_XML_URL} from "./HomePage";
 
 export default class PlayerStats extends React.Component {
 
+    static navigationOptions = {
+        header:null
+    }
+
     constructor(props){
         super(props);
         this.state = {

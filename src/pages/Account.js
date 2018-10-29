@@ -12,6 +12,10 @@ export default class Account extends React.Component {
     //     Actions.settings();
     // }
 
+    static navigationOptions = {
+        header:null
+    }
+
     render() {
         return(
 

@@ -5,69 +5,88 @@ import {View, Text, TouchableOpacity, StyleSheet,
 import HomePage from './HomePage';
 import {Header} from 'react-native-elements';
 import reloadURL from './HomePage';
+import {withNavigation} from 'react-navigation';
 
 // Trying to reload the URL. Not working, naturally.
 function reloadHome(text) {
     reloadURL(text);
 }
 
-export var NEW_XML_URL = 'http://www.espn.com/espn/rss/ncf/news';
-
-export default class Menu extends Component {
+class Menu extends Component {
     // Builder for the categories, their names and the image.
     state = {
         names: [
             {
                 id: 0,
                 name: 'Football',
-                image: require('../images/categories/football.png')
+                image: require('../images/categories/football.png'),
+                feed: 'http://www.espn.com/espn/rss/ncf/news'
             },
             {
                 id: 1,
                 name: 'Basketball (M)',
-                image: require('../images/categories/basketball_m.png')
+                image: require('../images/categories/basketball_m.png'),
+                feed: 'http://www.espn.com/espn/rss/ncb/news'
             },
             {
                 id: 2,
                 name: 'Basketball (F)',
-                image: require('../images/categories/basketball_f.png')
+                image: require('../images/categories/basketball_f.png'),
+                feed: 'https://hoopfeed.com/content/feed'
             },
             {
                 id: 3,
                 name: 'Baseball',
-                image: require('../images/categories/baseball.png')
+                image: require('../images/categories/baseball.png'),
+                feed: 'https://d1baseball.com/feed'
             },
             {
                 id: 4,
                 name: 'Soccer (M)',
-                image: require('../images/categories/soccer_m.png')
+                image: require('../images/categories/soccer_m.png'),
+                feed: 'http://www.espn.com/espn/rss/ncf/news'
             },
             {
                 id: 5,
                 name: 'Soccer (F)',
-                image: require('../images/categories/soccer_f.png')
+                image: require('../images/categories/soccer_f.png'),
+                feed: 'http://www.espn.com/espn/rss/ncf/news'
             },
             {
                 id: 6,
                 name: 'Softball',
-                image: require('../images/categories/softball.png')
+                image: require('../images/categories/softball.png'),
+                feed: 'http://www.espn.com/espn/rss/ncf/news'
             },
             {
                 id: 7,
                 name: 'Volleyball (F)',
-                image: require('../images/categories/volleyball_f.png')
+                image: require('../images/categories/volleyball_f.png'),
+                feed: 'http://www.espn.com/espn/rss/ncf/news'
             },
             {
                 id: 8,
                 name: 'Volleyball (M)',
-                image: require('../images/categories/volleyball_m.png')
+                image: require('../images/categories/volleyball_m.png'),
+                feed: 'http://www.espn.com/espn/rss/ncf/news'
             },
             {
                 id: 9,
                 name: 'Water Polo',
-                image: require('../images/categories/polo.png')
+                image: require('../images/categories/polo.png'),
+                feed: 'http://www.espn.com/espn/rss/ncf/news'
             }
         ]
+    };
+
+    static navigationOptions = {
+        title: 'Sports News Selection',
+        headerTitleStyle: {
+            color: '#fff'
+        },
+        headerStyle: {
+            backgroundColor: '#ff3b3b'
+        }
     };
 
     // I'm honestly not sure what this is for.
@@ -82,15 +101,15 @@ export default class Menu extends Component {
     // HomePage. It didn't work. Because it never does. Do we need Navigation set up?
     render() {
         return (
-            <View>
+            <View style = {styles.pageContainer}>
                 <SafeAreaView style={styles.safeArea}>
                 </SafeAreaView>
-                <Header
-                    resizeMode="cover"
-                    backgroundColor={'#ff3b3b'}
-                    style={styles.droidSafeView}
-                >
-                </Header>
+                {/*<Header*/}
+                    {/*resizeMode="cover"*/}
+                    {/*backgroundColor={'#ff3b3b'}*/}
+                    {/*style={styles.droidSafeView}*/}
+                {/*>*/}
+                {/*</Header>*/}
                     {
                     this.state.names.map((item, index) => (
                         <TouchableOpacity
@@ -98,9 +117,7 @@ export default class Menu extends Component {
                             style = {styles.container}
                             // onPress = {() => HomePage.REQUEST_XML_URL = "http://www.espn.com/espn/rss/ncf/news"}
                             // onPress = {() => HomePage.setState({dummy: 1})}
-                            onPress={() => {
-                                HomePage.reloadURL(NEW_XML_URL);
-                                Alert.alert("changed to " + NEW_XML_URL);
+                            onPress={() => {this.props.navigation.push('HomePage', {newURL: item.feed})
                             }}>
                             <ImageBackground
                                 style={styles.button}
@@ -119,6 +136,9 @@ export default class Menu extends Component {
 }
 
 const styles = StyleSheet.create ({
+    pageContainer: {
+        marginTop: 25
+    },
     container: {
         width: '100%',
         paddingBottom: 2,
@@ -138,6 +158,9 @@ const styles = StyleSheet.create ({
     },
 });
 
-Menu.propTypes = {
-    onItemSelected: PropTypes.func.isRequired,
-};
+// For SideMenu
+// Menu.propTypes = {
+//     onItemSelected: PropTypes.func.isRequired,
+// };
+
+export default withNavigation(Menu);

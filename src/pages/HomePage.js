@@ -8,7 +8,8 @@ import Menu from './Menu';
 
 // In future, set this equal to the default sport set on
 // the user's account. -JG
-export var REQUEST_XML_URL = 'http://www.espn.com/espn/rss/ncb/news';
+//const REQUEST_XML_URL = this.props.getParam('newURL', 'http://www.espn.com/espn/rss/ncb/news');
+var REQUEST_XML_URL = 'http://www.espn.com/espn/rss/ncb/news';
 //const REQUEST_XML_URL = 'https://www.cbsnews.com/rss/';
 
 export default class HomePage extends React.Component {
@@ -100,7 +101,8 @@ export default class HomePage extends React.Component {
                         />
                     }
                     rightComponent={{ icon: 'menu', color: '#fff', size: 35,
-                        onPress: () => this.toggle(), underlayColor:'#ff3b3b'}}
+                        onPress: () => this.props.navigation.navigate('Menu'), underlayColor:'#ff3b3b'}}
+                    //onPress: () => this.toggle(), underlayColor:'#ff3b3b'}}
                     backgroundColor={'#ff3b3b'}
                 />
                 <ListView
@@ -115,7 +117,8 @@ export default class HomePage extends React.Component {
 
     // Checks if URL is mounted
     componentDidMount() {
-        this.fetchData(REQUEST_XML_URL);
+        this.fetchData(this.props.navigation.getParam('newURL', REQUEST_XML_URL));
+        // this.fetchData(REQUEST_XML_URL);
     }
 
     // Trying to make this work for inputting a new URL but it's not working

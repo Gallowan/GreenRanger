@@ -11,6 +11,9 @@ export default class SignUp extends Component {
     // goBack(){
     //     Actions.pop();
     // }
+    static navigationOptions = {
+        header:null
+    }
 
     render() {
         return(
